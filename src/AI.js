@@ -72,7 +72,8 @@ document.addEventListener('DOMContentLoaded', function () {
             response_mime_type: "application/json",
             response_schema: schema
           }
-        })
+        }),
+        keepalive: true
       })
       .then(response => response.json())
       .then(data => {
@@ -94,6 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function dataProcessing(themeInput, data) {
+    
   if (!data.candidates || !Array.isArray(data.candidates)) {
     console.error('Invalid data format:', data);
     return;
