@@ -92,31 +92,20 @@ select {
     border-radius: 5px;
 }
 
-.button-group {
-    display: flex;
-    gap: 10px;
-    margin-top: 15px;
-}
 
-.generate-btn, .preview-btn {
+
+
+.generate-btn {
     flex: 1;
     padding: 10px;
     border: none;
     font-size: 16px;
     border-radius: 5px;
     cursor: pointer;
-}
-
-.generate-btn {
+    margin-top: 30px;
     background: #00ffcc;
     color: black;
     margin-right: 10px;
-}
-
-.preview-btn {
-    background: #333;
-    color: #00ffcc;
-    border: 1px solid #00ffcc;
 }
 
 .history-btn {
