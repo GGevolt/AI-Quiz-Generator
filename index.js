@@ -7,5 +7,5 @@ async function loadComponent(id, file) {
 
 // If want to import any file, please import here -.-
 loadComponent("main", "src/components/main/main.html");
-
+loadComponent("homepage", "src/components/HomePage/homepage.html");
 //----//
