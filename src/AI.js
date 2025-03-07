@@ -41,19 +41,21 @@ const schema = {
   },
 };
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("componentLoaded", function () {
   console.log("DOM fully loaded and parsed"); // Check if the DOM is fully loaded
 
-  const generateQuizButton = document.getElementById(""); // Add the id of the generate button
+  const generateQuizButton = document.getElementById("gen-btn");
   if (generateQuizButton) {
     console.log("Button found");
     generateQuizButton.addEventListener(
       "click",
       debounce(function () {
-        const themeInput = document.getElementById("").value; // Add the id of the theme input
-        const languageInput = document.getElementById("").value; // Add the id of the language input
-        const difficultyInput = document.getElementById("").value; // Add the id of the difficulty input
-        const questionNumbers = document.getElementById("").value; // Add the id of the question numbers input
+        const themeInput = document.getElementById("theme-input").value; // Add the id of the theme input
+        const languageInput = document.getElementById("language-select").value; // Add the id of the language input
+        const difficultyInput =
+          document.getElementById("difficulty-select").value; // Add the id of the difficulty input
+        const questionNumbers =
+          document.getElementById("questions-count").value; // Add the id of the question numbers input
         if (!themeInput) {
           console.error("Theme input is empty");
           return;
