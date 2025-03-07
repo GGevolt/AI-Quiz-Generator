@@ -1,37 +1,32 @@
-    <div class="matrix-bg"></div> <!-- Nền hiệu ứng Matrix -->
-    <a href="#" class="history-btn">🕒 History</a>
+<div class="matrix-bg"></div>
+<a href="#" class="history-btn">🕒 History</a>
 
-    
-    <div class="container">
-        <h1>A.I.</h1>
-        <p>Type a subject to generate a quiz</p>
+<div class="container">
+    <h1>A.I.</h1>
+    <p>Type a subject to generate a quiz</p>
 
-        <input type="text" placeholder="Enter a subject...">
-    
-        <div class="options">
-            <select>
-                <option>Language</option>
-                <option>English</option>
-                <option>Vietnamese</option>
-            </select>
+    <input type="text" placeholder="Enter a subject...">
 
-            <select>
-                <option>Difficulty Level</option>
-                <option>Easy</option>
-                <option>Medium</option>
-                <option>Difficult</option>
-            </select>
-            <select>
-                <option>10 Question</option>
-                <option>8 Question</option>
-                <option>4 Question</option>
-                <option>12 Question</option>
-            </select>
-        </div>
-        <button class="generate-btn" onclick="window.location.href='preview.html'">⚡ Generate AI Quiz</button>
-        <!-- <div class="button-group">
-            <button class="preview-btn" onclick="window.location.href='preview.html'">👁️ Preview</button>
-            <button class="generate-btn">⚡ Generate AI Quiz</button>
-        </div> -->
+    <div class="options">
+        <select>
+            <option>Language</option>
+            <option>English</option>
+            <option>Vietnamese</option>
+        </select>
+
+        <select>
+            <option>Difficulty Level</option>
+            <option>Easy</option>
+            <option>Medium</option>
+            <option>Difficult</option>
+        </select>
+
+        <input type="number" value="10" min="1" max="10" step="1" onfocus="this.value=10;" onkeydown="return false;">
+        <span class="label">Questions</span>
+        
     </div>
+
+    <button onclick="window.location.href='preview.html'">⚡ Generate AI Quiz</button>
+</div>
+
 

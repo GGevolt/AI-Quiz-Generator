@@ -7,7 +7,6 @@
     font-family: 'Orbitron', sans-serif;
 }
 
-
 body {
     background: rgb(44, 43, 37);
     color: white;
@@ -24,7 +23,6 @@ body {
     opacity: 0.3;
     z-index: -1;
 }
-
 
 .container {
     position: absolute;
@@ -47,8 +45,6 @@ p {
     margin-bottom: 20px;
 }
 
-
-
 input[type="text"] {
     width: 100%;
     padding: 10px;
@@ -61,7 +57,9 @@ input[type="text"] {
 }
 
 button {
+    width: 100%;
     padding: 10px 15px;
+    margin-top: 30px;
     border: none;
     background: #00ffcc;
     color: black;
@@ -75,37 +73,34 @@ button:hover {
     background: #009977;
 }
 
-/* Dropdown menu */
 .options {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 10px;
     margin-top: 15px;
 }
 
-select {
+.options select,
+.options input[type="number"] {
     padding: 8px;
     font-size: 14px;
     background: black;
     color: white;
     border: 1px solid #00ffcc;
     border-radius: 5px;
+    outline: none;
 }
 
+.options input[type="number"] {
+    width: 100px;
+    text-align: center;
+}
 
-
-
-.generate-btn {
-    flex: 1;
-    padding: 10px;
-    border: none;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 30px;
-    background: #00ffcc;
-    color: black;
-    margin-right: 10px;
+.options .label {
+    font-size: 14px;
+    color: #00ffcc;
+    user-select: none;
 }
 
 .history-btn {
