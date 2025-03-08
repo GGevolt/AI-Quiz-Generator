@@ -1,4 +1,8 @@
-import API_KEY from "/../config.js";
+import API_KEY from "./config.js";
+import addData from "../addData.js";
+
+const DB_NAME = "QuizDatabase";
+const DB_VERSION = 1;
 
 const SchemaType = {
   ARRAY: "ARRAY",
@@ -147,6 +151,8 @@ function dataProcessing(themeInput, data) {
       explanation: q.explanation,
     })),
   };
+
+  addData(quizObject);
 
   console.log("Quiz Object:", quizObject); // Debugging: log the quiz object
 
