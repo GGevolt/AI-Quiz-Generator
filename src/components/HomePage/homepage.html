@@ -2,40 +2,75 @@
 <a href="#" class="history-btn">🕒 History</a>
 
 <div class="container">
-    <h1>A.I.</h1>
-    <p>Type a subject to generate a quiz</p>
+  <h1>A.I.</h1>
+  <p>Type a subject to generate a quiz</p>
 
-    <input type="text" placeholder="Enter a subject..." id="theme-input">
+  <input type="text" placeholder="Enter a subject..." />
 
-    <div class="options">
-        <select id="language-select">
-            <option selected>English</option>
-            <option>Vietnamese</option>
-            <option>Spanish</option>
-            <option>French</option>
-            <option>German</option>
-            <option>Chinese</option>
-            <option>Japanese</option>
-            <option>Korean</option>
-            <option>Russian</option>
-            <option>Italian</option>
-            <option>Portuguese</option>
-            <option>Hindi</option>
-            <option>Arabic</option>
-        </select>
+  <div class="options">
+    <select>
+      <option>Language</option>
+      <option>English</option>
+      <option>Vietnamese</option>
+    </select>
 
-        <select id="difficulty-select">
-            <option selected>Easy</option>
-            <option>Medium</option>
-            <option>Difficult</option>
-        </select>
+    <select>
+      <option>Difficulty Level</option>
+      <option>Easy</option>
+      <option>Medium</option>
+      <option>Difficult</option>
+    </select>
 
-        <input id="questions-count" type="number" value="10" min="1" max="10" step="1" onfocus="this.value=10;" onkeydown="return false;">
-        <span class="label">Questions</span>
-        
+    <input
+      type="number"
+      value="10"
+      min="1"
+      max="10"
+      step="1"
+      onfocus="this.value=10;"
+      onkeydown="return false;"
+    />
+    <span class="label">Questions</span>
+  </div>
+
+  <button>⚡ Generate AI Quiz</button>
+
+  <div class="container-preview">
+    <h2>👁️ Quiz Preview</h2>
+    <a href="#" class="start-btn">🚀 Start</a>
+
+    <div class="questions-list">
+      <div class="question">
+        <span class="question-number">1.</span> Nội dung câu hỏi số 1 ở đây?
+      </div>
+      <div class="question">
+        <span class="question-number">2.</span> Nội dung câu hỏi số 2 ở đây?
+      </div>
+      <div class="question">
+        <span class="question-number">3.</span> Nội dung câu hỏi số 3 ở đây?
+      </div>
+      <div class="question">
+        <span class="question-number">4.</span> Nội dung câu hỏi số 4 ở đây?
+      </div>
+      <div class="question">
+        <span class="question-number">5.</span> Nội dung câu hỏi số 5 ở đây?
+      </div>
+      <div class="question">
+        <span class="question-number">6.</span> Nội dung câu hỏi số 6 ở đây?
+      </div>
+      <div class="question">
+        <span class="question-number">7.</span> Nội dung câu hỏi số 7 ở đây?
+      </div>
+      <div class="question">
+        <span class="question-number">8.</span> Nội dung câu hỏi số 8 ở đây?
+      </div>
+      <div class="question">
+        <span class="question-number">9.</span> Nội dung câu hỏi số 9 ở đây?
+      </div>
+      <div class="question">
+        <span class="question-number">10.</span> Nội dung câu hỏi số 10 ở đây?
+      </div>
     </div>
-
-    <button class="generate" id="gen-btn">⚡ Generate AI Quiz</button>
+  </div>
 </div>
-
 
