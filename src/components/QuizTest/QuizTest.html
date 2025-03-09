@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./QuizTest.css" />
+    <title>Document</title>
+</head>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('.answer-item').forEach(item => {
+        item.addEventListener('click', () => {
+            document.querySelectorAll('.answer-item').forEach(el => {
+                el.classList.remove('answer-item-active');
+            });
+            item.classList.add('answer-item-active');
+        });
+    });
+  });
+  </script>
+<body>
+    <div class="matrix-bg"></div>
+    <div class="quiz-container">
+        <div class ="info-container">
+            <div class="info-item">
+                <p class="text-title">Quiz Topic</p>
+                <p class="topic-content">Topic</p>
+            </div>  
+            <div class="info-item">
+                <p class="text-title">Difficulty</p>
+                <div class="medium-content">
+                    <p class="">Medium</p>
+                </div>
+            </div>  
+            <div class="info-item">
+                <p class="text-title" >Quiz ID</p>
+                <p>ID:</p>
+            </div>  
+            <div class="info-item">
+                <p class="text-title">Date</p>
+                <p>Ngay-Thang-Nam</p>
+            </div>  
+            <div class="info-item">
+                <p class="text-title">Time Remainning</p>
+                <div class="time-content">
+                    <p class="">time</p>
+                </div>
+            </div>  
+        </div>
+        <div class="question-box">
+            <p>Question ... ?</p>
+        </div>
+        <div class="answer-box">
+            <div class="answer-item">
+                <div class="answer-title">
+                    A
+                </div>
+                <p>
+                    ANSWER1
+                </p>
+            </div>
+            <div class="answer-item">
+                <div class="answer-title">
+                    B
+                </div>
+                <p>
+                    ANSWER2
+                </p>
+            </div>
+            <div class="answer-item">
+                <div class="answer-title">
+                    C
+                </div>
+                <p>
+                    ANSWER3
+                </p>
+            </div>
+            <div class="answer-item">
+                <div class="answer-title">
+                    D
+                </div>
+                <p>
+                    ANSWER4
+                </p>
+            </div>
+        </div>
+        <div class="button-group">
+            <button class="save-button" type="button">Save Progress</button>
+            <button class="submit-button" type="submit">Submit</button>
+        </div>
+    </div>
+</body>
+</html>
