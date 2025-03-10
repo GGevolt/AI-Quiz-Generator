@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   if (homeButton) {
     homeButton.addEventListener("click", (e) => {
       e.preventDefault();
-      window.location.href = "./index.html";
+      window.location.href = "../../../index.html";
     });
   }
 

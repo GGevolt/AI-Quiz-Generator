@@ -66,6 +66,23 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     resultContainer.appendChild(questionItem);
   });
+
+  // Group Button
+  const retryButton = document.getElementById("retry-btn");
+  const homeButton = document.getElementById("home-btn");
+  const historyButton = document.getElementById("history-btn");
+
+  retryButton.addEventListener("click", function () {
+    window.location.href = `../QuizTest/QuizTest.html?id=${quizId}`;
+  });
+
+  homeButton.addEventListener("click", function () {
+    window.location.href = "../../../index.html";
+  });
+
+  historyButton.addEventListener("click", function () {
+    window.location.href = "../History/History.html";
+  });
 });
 
 // Get answer of user
