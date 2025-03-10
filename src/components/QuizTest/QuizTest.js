@@ -1,4 +1,5 @@
 import loadQuiz from "../../database/readData.js";
+import saveUserProgress from "../../database/updateData.js";
 
 const getIdFromUrl = () => {
   const urlParams = new URLSearchParams(window.location.search);
@@ -30,6 +31,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         answers.push(null);
       }
     });
+    saveUserProgress(quizId, answers);
     console.log(answers);
   });
 });
