@@ -21,7 +21,6 @@ function addData(quizObject) {
         createdAt: new Date().toISOString(),
         difficulty: quizObject.difficulty,
         // xóa status
-        status: "Pending",
         totalScore: null,
       };
       let addQuizRequest = quizStore.add(quizData);
