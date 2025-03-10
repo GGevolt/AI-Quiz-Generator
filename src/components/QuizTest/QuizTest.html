@@ -1,65 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./QuizTest.css" />
+    <script type="module" src="QuizTest.js" defer></script>
     <title>Quiz</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="matrix-bg"></div>
     <div class="quiz-container">
-        <div class="info-container">
-            <div class="info-item">
-                <p class="text-title">Quiz Topic</p>
-                <p class="topic-content">Topic</p>
-            </div>  
-            <div class="info-item">
-                <p class="text-title">Difficulty</p>
-                <div class="medium-content">
-                    <p>Medium</p>
-                </div>
-            </div>  
-            <div class="info-item">
-                <p class="text-title">Quiz ID</p>
-                <p>ID:</p>
-            </div>  
-            <div class="info-item">
-                <p class="text-title">Date</p>
-                <p>Ngay-Thang-Nam</p>
-            </div>  
-            <div class="info-item">
-                <p class="text-title">Time Remaining</p>
-                <div class="time-content">
-                    <p>time</p>
-                </div>
-            </div>  
+      <div class="info-container">
+        <div class="info-item">
+          <p class="text-title">Quiz Topic</p>
+          <p class="topic-content">Topic</p>
         </div>
-        <div class="question-box">
-            <p>Question ... ?</p>
+        <div class="info-item">
+          <p class="text-title">Difficulty</p>
+          <div class="medium-content">
+            <p>Medium</p>
+          </div>
         </div>
-        <div class="answer-box">
-            <label class="answer-item">
-                <input type="radio" name="answer" value="A">
-                <span>A</span>
-            </label>
-            <label class="answer-item">
-                <input type="radio" name="answer" value="B">
-                <span>B</span>
-            </label>
-            <label class="answer-item">
-                <input type="radio" name="answer" value="C">
-                <span>C</span>
-            </label>
-            <label class="answer-item">
-                <input type="radio" name="answer" value="D">
-                <span>D</span>
-            </label>
+        <div class="info-item">
+          <p class="text-title">Quiz ID</p>
+          <p>ID:</p>
         </div>
-        <div class="button-group">
-            <button class="save-button" type="button">Save Progress</button>
-            <button class="submit-button" type="submit">Submit</button>
+        <div class="info-item">
+          <p class="text-title">Date</p>
+          <p>Ngay-Thang-Nam</p>
         </div>
+        <div class="info-item">
+          <p class="text-title">Time Remaining</p>
+          <div class="time-content">
+            <p>time</p>
+          </div>
+        </div>
+      </div>
+      <div class="question-box">
+        <p>Question ... ?</p>
+      </div>
+      <div class="answer-box">
+        <label class="answer-item">
+          <input type="radio" name="answer" value="A" />
+          <span>A</span>
+        </label>
+        <label class="answer-item">
+          <input type="radio" name="answer" value="B" />
+          <span>B</span>
+        </label>
+        <label class="answer-item">
+          <input type="radio" name="answer" value="C" />
+          <span>C</span>
+        </label>
+        <label class="answer-item">
+          <input type="radio" name="answer" value="D" />
+          <span>D</span>
+        </label>
+      </div>
+      <div class="button-group">
+        <button class="save-button" type="button">Save Progress</button>
+        <button class="submit-button" type="submit">Submit</button>
+      </div>
     </div>
-</body>
+  </body>
 </html>
