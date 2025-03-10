@@ -98,7 +98,11 @@ document.addEventListener("componentLoaded", function () {
           .then((response) => response.json())
           .then((data) => {
             console.log("Response data:", data); // Debugging: log the response data
-            const quizObject = dataProcessing(themeInput, data,difficultyInput);
+            const quizObject = dataProcessing(
+              themeInput,
+              data,
+              difficultyInput
+            );
             loader.classList.remove("open");
             if (quizObject) {
               // This the place to do something with the quiz object like save into a database or display it on the page
