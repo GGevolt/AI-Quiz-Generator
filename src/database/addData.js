@@ -19,6 +19,7 @@ function addData(quizObject) {
       let quizData = {
         topic: quizObject.theme,
         createdAt: new Date().toISOString(),
+        difficulty: quizObject.difficulty,
         // xóa status
         status: "Pending",
         totalScore: null,
