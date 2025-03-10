@@ -98,7 +98,7 @@ document.addEventListener("componentLoaded", function () {
           .then((response) => response.json())
           .then((data) => {
             console.log("Response data:", data); // Debugging: log the response data
-            const quizObject = dataProcessing(themeInput, data);
+            const quizObject = dataProcessing(themeInput, data,difficultyInput);
             loader.classList.remove("open");
             if (quizObject) {
               // This the place to do something with the quiz object like save into a database or display it on the page
@@ -119,7 +119,7 @@ document.addEventListener("componentLoaded", function () {
   }
 });
 
-function dataProcessing(themeInput, data) {
+function dataProcessing(themeInput, data, difficultyInput) {
   if (!data.candidates || !Array.isArray(data.candidates)) {
     console.error("Invalid data format:", data);
     return;
@@ -153,6 +153,7 @@ function dataProcessing(themeInput, data) {
 
   const quizObject = {
     theme: themeInput,
+    difficulty: difficultyInput,
     questions: questions.map((q) => ({
       question: q.question,
       answers: q.answers,
