@@ -38,6 +38,8 @@ document.addEventListener("DOMContentLoaded", async function () {
           tableBody.appendChild(row);
         });
       }
+      // Add event listeners to resume buttons after rendering
+      addResumeEventListeners();
     } catch (error) {
       console.error("Error loading quiz history:", error);
       tableBody.innerHTML = `
