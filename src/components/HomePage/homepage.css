@@ -188,62 +188,131 @@ button:hover {
 }
 
 .container-preview::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);}
-  
+  background: rgba(255, 255, 255, 0.1);
+}
+
 .quiz-container {
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 80%;
-    max-width: 600px;
-    margin: 20px auto;
-    box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 600px;
+  margin: 20px auto;
+  box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
 }
 
 .quiz-container h2 {
-    text-align: center;
-    color: #00ffcc;
-    border-bottom: 1px solid #00ffcc;
-    padding-bottom: 10px;
+  text-align: center;
+  color: #00ffcc;
+  border-bottom: 1px solid #00ffcc;
+  padding-bottom: 10px;
 }
 
 .quiz-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .quiz-question {
-    background: rgba(0, 0, 0, 0.6);
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #00ffcc;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #00ffcc;
 }
 
 .quiz-question p {
-    margin-bottom: 10px;
-    font-weight: bold;
-    color: #00ffcc;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #00ffcc;
 }
 
 .quiz-question label {
-    display: block;
-    margin: 5px 0;
-    cursor: pointer;
+  display: block;
+  margin: 5px 0;
+  cursor: pointer;
 }
 
 .submit-btn {
-    background: #00ffcc;
-    color: black;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: 0.3s;
+  background: #00ffcc;
+  color: black;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: 0.3s;
 }
 
 .submit-btn:hover {
-    background: #009977;
+  background: #009977;
+}
+
+/* LOADER SPINNER CSS */
+#loader {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: none;
+
+  .loader--background {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+#loader.open {
+  display: block;
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  background: #00ffcc;
+  display: block;
+  margin: 20px auto;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotationBack 1s ease-in-out infinite reverse;
+}
+.loader::before {
+  content: "";
+  box-sizing: border-box;
+  left: 0;
+  top: 0;
+  transform: rotate(45deg);
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  background: #00ffcc;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+.loader::after {
+  content: "";
+  box-sizing: border-box;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: #fff;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+@keyframes rotationBack {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
 }
