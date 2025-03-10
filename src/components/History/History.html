@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🕒 History</title>
+    <link rel="stylesheet" href="History.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h1>🕒 History</h1>
+                <p>View your quiz attempt history and performance</p>
+            </div>
+            <div class="card-content">
+                <div class="filters">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search by topic" class="search-input">
+                        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </div>
+                    <div class="select-container">
+                        <select class="difficulty-select">
+                            <option value="all">All Difficulty</option>
+                            <option value="easy">Easy</option>
+                            <option value="medium">Medium</option>
+                            <option value="difficulty">Difficulty</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Test Date</th>
+                                <th>Quiz Topic</th>
+                                <th>Difficulty</th>
+                                <th>totalScore</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>DAYTIME</td>
+                                <td>Topic1</td>
+                                <td><span class="badge easy">Easy</span></td>
+                                <td class="score-cell">/10</td>
+                                <td><span class="status completed">Completed</span></td>
+                                <td class="action-cell"><a href="#" class="review-link">Review Quiz</a></td>
+                            </tr>
+                            <tr>
+                                <td>DAYTIME</td>
+                                <td>Topic2</td>
+                                <td><span class="badge medium">Medium</span></td>
+                                <td class="score-cell">/10</td>
+                                <td><span class="status completed">Completed</span></td>
+                                <td class="action-cell"><a href="#" class="review-link">Review Quiz</a></td>
+                            </tr>
+                            <tr>
+                                <td>DAYTIME</td>
+                                <td>Topic3</td>
+                                <td><span class="badge difficulty">Difficulty</span></td>
+                                <td class="score-cell">/10</td>
+                                <td><span class="status pending">Pending</span></td>
+                                <td class="action-cell"><a href="#" class="review-link">Review Quiz</a></td>
+                            </tr>
+                            <tr>
+                                <td>DAYTIME</td>
+                                <td>Topic4</td>
+                                <td><span class="badge medium">Medium</span></td>
+                                <td class="score-cell">/10</td>
+                                <td><span class="status pending">Pending</span></td>
+                                <td class="action-cell"><a href="#" class="review-link">Review Quiz</a></td>
+                            </tr>
+                            <!-- Thêm nhiều dòng hơn để kiểm tra thanh cuộn -->
+                            <tr>
+                                <td>DAYTIME</td>
+                                <td>Topic5</td>
+                                <td><span class="badge easy">Easy</span></td>
+                                <td class="score-cell">/10</td>
+                                <td><span class="status completed">Completed</span></td>
+                                <td class="action-cell"><a href="#" class="review-link">Review Quiz</a></td>
+                            </tr>
+                            <tr>
+                                <td>DAYTIME</td>
+                                <td>Topic6</td>
+                                <td><span class="badge medium">Medium</span></td>
+                                <td class="score-cell">/10</td>
+                                <td><span class="status completed">Completed</span></td>
+                                <td class="action-cell"><a href="#" class="review-link">Review Quiz</a></td>
+                            </tr>
+                            <tr>
+                                <td>DAYTIME</td>
+                                <td>Topic7</td>
+                                <td><span class="badge difficulty">Difficulty</span></td>
+                                <td class="score-cell">/10</td>
+                                <td><span class="status pending">Pending</span></td>
+                                <td class="action-cell"><a href="#" class="review-link">Review Quiz</a></td>
+                            </tr>
+                            <tr>
+                                <td>DAYTIME</td>
+                                <td>Topic8</td>
+                                <td><span class="badge medium">Medium</span></td>
+                                <td class="score-cell">/10</td>
+                                <td><span class="status pending">Pending</span></td>
+                                <td class="action-cell"><a href="#" class="review-link">Review Quiz</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="button-container">
+                    <a href="#" class="home-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                        Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
