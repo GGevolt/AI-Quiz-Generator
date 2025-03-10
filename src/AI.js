@@ -1,6 +1,6 @@
-import API_KEY from "./config.js";
-import addData from "../addData.js";
-import loadQuiz from "../readData.js";
+import API_KEY from "/../config.js";
+import addData from "./database/addData.js";
+import loadQuiz from "./database/readData.js";
 
 const DB_NAME = "QuizDatabase";
 const DB_VERSION = 1;
@@ -153,8 +153,8 @@ function dataProcessing(themeInput, data) {
     })),
   };
 
-  addData(quizObject);
-  loadQuiz(4);
+  // addData(quizObject);
+  // loadQuiz(4);
 
   console.log("Quiz Object:", quizObject); // Debugging: log the quiz object
 
