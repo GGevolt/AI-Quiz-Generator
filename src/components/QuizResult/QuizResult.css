@@ -36,16 +36,16 @@
 }
 
 .score {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
   color: #00ffcc;
 }
 
 .answers-container {
   width: 80%;
-  max-width: 800px;
+  max-width: 1000px;
   background: rgba(0, 0, 0, 0.7);
-  padding: 20px;
+  padding: 30px;
   border-radius: 10px;
   border: 1px solid #00ffcc;
   box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
@@ -57,12 +57,12 @@
 }
 
 .question-text {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
 }
 
 .user-answer {
-  font-size: 16px;
+  font-size: 18px;
   margin-top: 5px;
 }
 
@@ -75,19 +75,24 @@
 }
 
 .correct-answer {
-  font-size: 14px;
+  font-size: 18px;
   color: #00ffcc;
   margin-top: 5px;
 }
 
 .button-group {
   display: flex;
+  justify-content: center;
   gap: 20px;
-  margin-top: 20px;
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
 }
 
 .retry-button,
-.exit-button,
+.home-button,
 .history-button {
   background: #00ffcc;
   color: black;
@@ -98,7 +103,8 @@
 }
 
 .retry-button:hover,
-.exit-button:hover {
+.home-button:hover,
+.history-button:hover {
   background: #009977;
 }
 
@@ -106,6 +112,16 @@
   max-height: 400px;
   overflow-y: auto;
   padding-right: 10px;
+}
+
+.answer-explanation {
+  font-size: 18px;
+  color: #ffdd57;
+  margin-top: 5px;
+  background: rgba(255, 221, 87, 0.1);
+  padding: 8px;
+  border-left: 4px solid #ffdd57;
+  border-radius: 5px;
 }
 
 /* Thiết lập thanh cuộn */
@@ -123,7 +139,7 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 1500px) {
   .result-section {
     flex-direction: column;
     align-items: center;
@@ -150,7 +166,7 @@
   }
 
   .retry-button,
-  .exit-button,
+  .home-button,
   .history-button {
     width: 80%;
   }
