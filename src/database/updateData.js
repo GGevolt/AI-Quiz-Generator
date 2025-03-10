@@ -1,4 +1,4 @@
-export default function saveUserProgress(quizId, quizAnswer) {
+export default function saveUserProgress(quizId, quizAnswer, status) {
 
     let dbRequest = indexedDB.open("QuizDatabase", 1);
 
@@ -10,7 +10,7 @@ export default function saveUserProgress(quizId, quizAnswer) {
         let progressData = {
             quizzId: quizId,  // Liên kết với bài quiz
             answers: quizAnswer,  // Danh sách câu trả lời
-            status: "Completed"
+            status: status
         };
 
         let request = progressStore.put(progressData);

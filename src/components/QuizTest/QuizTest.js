@@ -35,12 +35,15 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
     caculateScore(quizObject, answers);
     window.location.href = `../QuizResult/QuizResult.html?id=${quizObject.quiz.id}`;
-    saveUserProgress(quizId, answers);
+    saveUserProgress(quizId, answers, "Completed");
     console.log(answers);
   });
 });
 
 function displayQuestions(quizObject, container) {
+
+  const userAnswers = {};
+
   quizObject.questions.forEach((q, index) => {
     const questionBox = document.createElement("div");
     questionBox.classList.add("question-box");
@@ -57,7 +60,8 @@ function displayQuestions(quizObject, container) {
           <span>${String.fromCharCode(65 + optionIndex)}. ${option}</span>
         `;
       answerItem.querySelector("input").addEventListener("change", (e) => {
-        //save here
+        userAnswers[index] = e.target.value; // Cập nhật câu trả lời của người dùng
+        saveUserProgress(quizObject.quiz.id, userAnswers, "Pending");
       });
       answerBox.appendChild(answerItem);
     });
