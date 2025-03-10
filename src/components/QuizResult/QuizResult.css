@@ -82,13 +82,9 @@
 
 .button-group {
   display: flex;
-  justify-content: center;
   gap: 20px;
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
+  margin-top: 20px;
+  justify-content: center;
 }
 
 .retry-button,
