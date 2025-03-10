@@ -1,4 +1,4 @@
-import API_KEY from "/../config.js";
+import API_KEY from "../config.js";
 import addData from "./database/addData.js";
 
 const DB_NAME = "QuizDatabase";

@@ -1,4 +1,5 @@
 import loadQuiz from "../../database/readData.js";
+import caculateScore from "../../database/caculateScore.js";
 
 const getIdFromUrl = () => {
   const urlParams = new URLSearchParams(window.location.search);
@@ -30,7 +31,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         answers.push(null);
       }
     });
-    console.log(answers);
+    caculateScore(quizObject, answers);
+    window.location.href = `../QuizResult/QuizResult.html?id=${quizObject.quiz.id}`;
   });
 });
 
