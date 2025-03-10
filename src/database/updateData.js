@@ -8,7 +8,7 @@ export default function saveUserProgress(quizId, quizAnswer) {
         let progressStore = transaction.objectStore("UserProgress");
 
         let progressData = {
-            quizId: quizId,  // Liên kết với bài quiz
+            quizzId: quizId,  // Liên kết với bài quiz
             answers: quizAnswer,  // Danh sách câu trả lời
             status: "Completed"
         };

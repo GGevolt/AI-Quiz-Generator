@@ -22,7 +22,7 @@ openRequest.onupgradeneeded = function (event) {
     // 📂 Tạo object store "UserProgress"
     if (!db.objectStoreNames.contains("UserProgress")) {
         let userProgressStore = db.createObjectStore("UserProgress", { keyPath: "quizzId"});
-        userProgressStore.createIndex("quizId", "quizId", { unique: true });
+        userProgressStore.createIndex("quizzId", "quizzId", { unique: true });
     }
 
     console.log("Database setup complete! ✅");
