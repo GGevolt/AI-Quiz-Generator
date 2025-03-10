@@ -1,7 +1,7 @@
 import loadQuiz from "../../database/readData.js";
 import caculateScore from "../../database/caculateScore.js";
 import saveUserProgress from "../../database/updateData.js";
-
+import readQuiz from "../../database/readQuiz.js";
 
 const getIdFromUrl = () => {
   const urlParams = new URLSearchParams(window.location.search);
@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     console.error("❌ Quiz ID not found");
     return;
   }
+  displayQuizInfo(quizId);
   const quizObject = await loadQuiz(quizId);
   const questsContainer = document.getElementById("quest-container");
   displayQuestions(quizObject, questsContainer);
@@ -40,8 +41,21 @@ document.addEventListener("DOMContentLoaded", async function () {
   });
 });
 
-function displayQuestions(quizObject, container) {
+async function displayQuizInfo(quizId) {
+  const quizInfo = await readQuiz(quizId);
+  document.getElementById("topic-name").textContent = quizInfo.topic;
+  document.getElementById("difficulty-name").textContent = quizInfo.difficulty;
+  document.getElementById("id-name").textContent = `ID: ${quizId}`;
+  // Format date
+  const date = new Date(quizInfo.createdAt);
+  const formattedDate =
+    date.toLocaleDateString() +
+    " " +
+    date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  document.getElementById("date-name").textContent = formattedDate;
+}
 
+function displayQuestions(quizObject, container) {
   const userAnswers = {};
 
   quizObject.questions.forEach((q, index) => {
