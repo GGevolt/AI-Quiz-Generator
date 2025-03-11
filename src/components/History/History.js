@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       <td><span class="badge ${badgeClass}">${quiz.difficulty}</span></td>
       <td class="score-cell">${
         quiz.totalScore !== null ? quiz.totalScore : "-"
-      }/10</td>
+      }/${quiz.questionsCount}</td>
       <td><span class="status ${statusClass}">${statusValue}</span></td>
       <td class="action-cell">
         ${actionHtml}
@@ -117,32 +117,33 @@ document.addEventListener("DOMContentLoaded", async function () {
   // Function to handle resuming a quiz
   function resumeQuiz(quizId) {
     const request = indexedDB.open("QuizDatabase", 1);
-  
+
     request.onsuccess = (event) => {
       const db = event.target.result;
       const transaction = db.transaction("UserProgress", "readonly");
       const store = transaction.objectStore("UserProgress");
       const getRequest = store.get(Number(quizId));
-  
+
       getRequest.onsuccess = () => {
         const progressData = getRequest.result;
         if (progressData) {
           console.log("Resuming quiz with saved answers:", progressData);
-          const answersString = encodeURIComponent(JSON.stringify(progressData.answers));
+          const answersString = encodeURIComponent(
+            JSON.stringify(progressData.answers)
+          );
           window.location.href = `../../components/QuizTest/QuizTest.html?id=${quizId}&answers=${answersString}`;
         } else {
           console.warn("No saved progress found, starting fresh.");
           window.location.href = `../../components/QuizTest/QuizTest.html?id=${quizId}`;
         }
       };
-  
+
       getRequest.onerror = () => {
         console.error("Error retrieving quiz progress.");
         window.location.href = `../../components/QuizTest/QuizTest.html?id=${quizId}`;
       };
     };
   }
-  
 
   // Debounce function to limit how often a function is called
   function debounce(func, delay) {

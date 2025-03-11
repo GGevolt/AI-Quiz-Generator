@@ -321,3 +321,14 @@ button:hover {
     transform: rotate(-360deg);
   }
 }
+
+#helper-text {
+  color: red;
+  margin-top: 10px;
+  font-weight: bold;
+  display: none;
+}
+
+#helper-text.show {
+  display: block;
+}

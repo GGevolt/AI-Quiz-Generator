@@ -128,41 +128,45 @@ function resetUserAnswers(quizId) {
 
     request.onsuccess = function (event) {
       let db = event.target.result;
-      let transaction = db.transaction(["UserProgress"], "readwrite");
-      let store = transaction.objectStore("UserProgress");
+      let transaction = db.transaction(["UserProgress", "Quizz"], "readwrite");
 
-      let getRequest = store.get(quizId);
+      let userProgressStore = transaction.objectStore("UserProgress");
+      let quizzStore = transaction.objectStore("Quizz");
 
-      getRequest.onsuccess = function () {
-        if (getRequest.result) {
-          let updatedData = getRequest.result;
-          updatedData.answers = [];
-
-          let updateRequest = store.put(updatedData);
-
-          updateRequest.onsuccess = function () {
-            resolve("Cập nhật answers thành công!");
-          };
-
-          updateRequest.onerror = function () {
-            reject("Lỗi khi cập nhật dữ liệu UserProgress");
-          };
-        } else {
-          reject("Không tìm thấy quizId trong UserProgress");
+      // Lấy dữ liệu từ UserProgress
+      let userProgressRequest = userProgressStore.get(quizId);
+      userProgressRequest.onsuccess = function () {
+        let userProgress = userProgressRequest.result;
+        if (userProgress) {
+          userProgress.answers = []; // Reset câu trả lời
+          userProgressStore.put(userProgress);
         }
       };
 
-      getRequest.onerror = function () {
-        reject("Lỗi khi lấy dữ liệu UserProgress");
+      // Lấy dữ liệu từ Quizz
+      let quizzRequest = quizzStore.get(quizId);
+      quizzRequest.onsuccess = function () {
+        let quizzData = quizzRequest.result;
+        if (quizzData) {
+          quizzData.totalScore = null; // Reset totalScore
+          quizzStore.put(quizzData);
+        }
+      };
+
+      transaction.oncomplete = function () {
+        console.log(`Reset thành công cho quizId: ${quizId}`);
+        resolve();
       };
 
       transaction.onerror = function () {
-        reject("Lỗi transaction");
+        console.error("Lỗi transaction khi reset dữ liệu");
+        reject("Lỗi transaction khi reset dữ liệu");
       };
     };
 
     request.onerror = function () {
-      reject("Lỗi mở indexDb");
+      console.error("Lỗi mở IndexedDB");
+      reject("Lỗi mở IndexedDB");
     };
   });
 }
