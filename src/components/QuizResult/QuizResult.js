@@ -72,7 +72,8 @@ document.addEventListener("DOMContentLoaded", async function () {
   const homeButton = document.getElementById("home-btn");
   const historyButton = document.getElementById("history-btn");
 
-  retryButton.addEventListener("click", function () {
+  retryButton.addEventListener("click", async function () {
+    await resetUserAnswers(quizId);
     window.location.href = `../QuizTest/QuizTest.html?id=${quizId}`;
   });
 
@@ -102,6 +103,52 @@ function getUserAnswers(quizId) {
           resolve(getRequest.result.answers);
         } else {
           resolve(null);
+        }
+      };
+
+      getRequest.onerror = function () {
+        reject("Lỗi khi lấy dữ liệu UserProgress");
+      };
+
+      transaction.onerror = function () {
+        reject("Lỗi transaction");
+      };
+    };
+
+    request.onerror = function () {
+      reject("Lỗi mở indexDb");
+    };
+  });
+}
+
+//Reset User's Answers
+function resetUserAnswers(quizId) {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open(DB_NAME, DB_VERSION);
+
+    request.onsuccess = function (event) {
+      let db = event.target.result;
+      let transaction = db.transaction(["UserProgress"], "readwrite");
+      let store = transaction.objectStore("UserProgress");
+
+      let getRequest = store.get(quizId);
+
+      getRequest.onsuccess = function () {
+        if (getRequest.result) {
+          let updatedData = getRequest.result;
+          updatedData.answers = [];
+
+          let updateRequest = store.put(updatedData);
+
+          updateRequest.onsuccess = function () {
+            resolve("Cập nhật answers thành công!");
+          };
+
+          updateRequest.onerror = function () {
+            reject("Lỗi khi cập nhật dữ liệu UserProgress");
+          };
+        } else {
+          reject("Không tìm thấy quizId trong UserProgress");
         }
       };
 

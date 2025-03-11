@@ -21,8 +21,10 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   const urlParams = new URLSearchParams(window.location.search);
   const answersParam = urlParams.get("answers");
-  const userAnswers = answersParam ? JSON.parse(decodeURIComponent(answersParam)) : {};
-  displayQuestions(quizObject, questsContainer,userAnswers);
+  const userAnswers = answersParam
+    ? JSON.parse(decodeURIComponent(answersParam))
+    : {};
+  displayQuestions(quizObject, questsContainer, userAnswers);
   const submitBtn = document.getElementById("submit-quiz");
   //submit button event listener
   submitBtn.addEventListener("click", () => {
@@ -73,7 +75,7 @@ function displayQuestions(quizObject, container, userAnswers = {}) {
       answerItem.classList.add("answer-item");
 
       // Kiểm tra xem option có phải là câu trả lời đã lưu không
-      const isChecked = userAnswers[index] === option ? "checked" : ""; 
+      const isChecked = userAnswers[index] === option ? "checked" : "";
 
       answerItem.innerHTML = `
         <input type="radio" name="answer${index}" value="${option}" ${isChecked} />
