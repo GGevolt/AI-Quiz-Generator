@@ -9,6 +9,7 @@
   <p>Type a subject to generate a quiz</p>
 
   <input type="text" placeholder="Enter a subject..." id="theme-input" />
+  <p id="helper-text" class=""></p>
   <div class="options">
     <select id="language-select">
       <option selected>English</option>
@@ -39,20 +40,29 @@
       min="1"
       max="10"
       step="1"
-      onfocus="this.value=10;"
-      onkeydown="return false;"
     />
     <span class="label">Questions</span>
   </div>
 
-  <button class="generate" id="gen-btn">⚡ Generate AI Quiz</button>
-
-  <div class="container-preview" id="questions-preview"></div>
-</div>
-
-<!-- LOADER -->
-<div id="loader" class="">
-  <div class="loader--background">
-    <span class="loader"></span>
+    <button class="generate" id="gen-btn">⚡ Generate AI Quiz</button>
+    <div class="container-preview" id="questions-preview"></div>
   </div>
-</div>
+
+  <!-- LOADER -->
+  <div id="loader" class="">
+    <div class="loader--background">
+      <span class="loader"></span>
+    </div>
+  </div>
+
+  <script>
+    // Add this to your existing JavaScript
+    document.getElementById('gen-btn').addEventListener('click', function() {
+      // Your existing code for generating the quiz
+      
+      // Add this line to apply the quiz-active class to the container
+      document.querySelector('.container').classList.add('quiz-active');
+    });
+  </script>
+</body>
+</html>

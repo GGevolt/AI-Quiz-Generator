@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       <td><span class="badge ${badgeClass}">${quiz.difficulty}</span></td>
       <td class="score-cell">${
         quiz.totalScore !== null ? quiz.totalScore : "-"
-      }/10</td>
+      }/${quiz.questionsCount}</td>
       <td><span class="status ${statusValue.toLocaleLowerCase()}">${statusValue}</span></td>
       <td class="action-cell">
         ${actionHtml}
@@ -122,11 +122,9 @@ document.addEventListener("DOMContentLoaded", async function () {
         alert("Failed to delete quiz. Please try again.");
       }
     });
-
+    
     return row;
   }
-
-
 
   // Debounce function to limit how often a function is called
   function debounce(func, delay) {

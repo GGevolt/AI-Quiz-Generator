@@ -20,6 +20,7 @@ function addData(quizObject) {
         topic: quizObject.theme,
         createdAt: new Date().toISOString(),
         difficulty: quizObject.difficulty,
+        questionsCount: quizObject.questions.length,
         // xóa status
         totalScore: null,
       };

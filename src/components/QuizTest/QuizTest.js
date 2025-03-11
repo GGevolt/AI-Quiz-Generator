@@ -44,6 +44,17 @@ document.addEventListener("DOMContentLoaded", async function () {
         answers.push(null);
       }
     });
+
+    if (answers.some((element) => element === null)) {
+      if (
+        !confirm(
+          "Do you want to submit? There are questions you have not answered yet."
+        )
+      ) {
+        return;
+      }
+    }
+
     caculateScore(quizObject, answers);
     // window.location.href = `../QuizResult/QuizResult.html?id=${quizObject.quiz.id}`;
     saveUserProgress(quizId, answers, "Completed");

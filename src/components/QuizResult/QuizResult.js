@@ -72,7 +72,8 @@ document.addEventListener("DOMContentLoaded", async function () {
   const homeButton = document.getElementById("home-btn");
   const historyButton = document.getElementById("history-btn");
 
-  retryButton.addEventListener("click", function () {
+  retryButton.addEventListener("click", async function () {
+    await resetUserAnswers(quizId);
     window.location.href = `../QuizTest/QuizTest.html?id=${quizId}`;
   });
 
@@ -116,6 +117,56 @@ function getUserAnswers(quizId) {
 
     request.onerror = function () {
       reject("Lỗi mở indexDb");
+    };
+  });
+}
+
+//Reset User's Answers
+function resetUserAnswers(quizId) {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open(DB_NAME, DB_VERSION);
+
+    request.onsuccess = function (event) {
+      let db = event.target.result;
+      let transaction = db.transaction(["UserProgress", "Quizz"], "readwrite");
+
+      let userProgressStore = transaction.objectStore("UserProgress");
+      let quizzStore = transaction.objectStore("Quizz");
+
+      // Lấy dữ liệu từ UserProgress
+      let userProgressRequest = userProgressStore.get(quizId);
+      userProgressRequest.onsuccess = function () {
+        let userProgress = userProgressRequest.result;
+        if (userProgress) {
+          userProgress.answers = []; // Reset câu trả lời
+          userProgressStore.put(userProgress);
+        }
+      };
+
+      // Lấy dữ liệu từ Quizz
+      let quizzRequest = quizzStore.get(quizId);
+      quizzRequest.onsuccess = function () {
+        let quizzData = quizzRequest.result;
+        if (quizzData) {
+          quizzData.totalScore = null; // Reset totalScore
+          quizzStore.put(quizzData);
+        }
+      };
+
+      transaction.oncomplete = function () {
+        console.log(`Reset thành công cho quizId: ${quizId}`);
+        resolve();
+      };
+
+      transaction.onerror = function () {
+        console.error("Lỗi transaction khi reset dữ liệu");
+        reject("Lỗi transaction khi reset dữ liệu");
+      };
+    };
+
+    request.onerror = function () {
+      console.error("Lỗi mở IndexedDB");
+      reject("Lỗi mở IndexedDB");
     };
   });
 }
