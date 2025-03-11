@@ -1,7 +1,7 @@
 import queryHistory from "../../database/queryHistory.js";
+import deleteQuizWithQuestions from "../../database/deleteData.js";
 
 document.addEventListener("DOMContentLoaded", async function () {
-  console.log("hello");
   const searchInput = document.getElementById("search-topic");
   const difficultySelect = document.getElementById("history-difficulty");
   const tableBody = document.querySelector(".history-table tbody");
@@ -103,8 +103,30 @@ document.addEventListener("DOMContentLoaded", async function () {
       </td>
     `;
 
+      // Xử lý sự kiện xóa quiz
+    row.querySelector(".delete-button").addEventListener("click", async function () {
+      const confirmDelete = confirm("Are you sure you want to delete this quiz?");
+      if (!confirmDelete) return;
+
+      try {
+        // Gọi API xóa quiz theo ID
+        await deleteQuizWithQuestions(quiz.id);
+
+        // Xóa hàng khỏi bảng ngay lập tức để phản hồi nhanh
+        row.remove();
+
+        // Cập nhật lại danh sách quiz từ database
+        await loadQuizHistory();
+      } catch (error) {
+        console.error("Error deleting quiz:", error);
+        alert("Failed to delete quiz. Please try again.");
+      }
+    });
+
     return row;
   }
+
+
 
   // Debounce function to limit how often a function is called
   function debounce(func, delay) {
