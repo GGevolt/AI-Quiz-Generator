@@ -145,7 +145,7 @@ body::before {
   margin-bottom: 20px;
   background-color: #121212;
   scrollbar-width: thin;
-  scrollbar-color: #00ffd5 #3a3a3a;
+  scrollbar-color: #00ffd5 #1a1a1a;
 }
 
 /* Style cho thanh cuộn trên Chrome, Edge, và Safari */
@@ -272,15 +272,14 @@ body::before {
   font-weight: 500;
 }
 
+.review-link:hover {
+  text-decoration: underline;
+  color: #93c5fd;
+
 .resume-link {
   color: #60a5fa;
   text-decoration: none;
   font-weight: 500;
-}
-
-.review-link:hover {
-  text-decoration: underline;
-  color: #93c5fd;
 }
 
 .resume-link:hover {
@@ -291,6 +290,13 @@ body::before {
   display: flex;
   justify-content: flex-end;
   margin-top: 20px;
+
+  position: sticky;
+  bottom: 0;
+  right: 0;
+  background-color: #121212;
+  padding: 10px 0;
+  z-index: 2;
 }
 
 .home-button {
@@ -369,3 +375,37 @@ body::before {
 .card {
   animation: glow 3s infinite;
 }
+
+
+/* Style cho cột Delete Quiz */
+.delete-cell {
+  text-align: center;
+}
+
+/* Style cho nút xóa */
+.delete-button {
+  background: none;
+  border: none;
+  color: #ff4d4d;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.delete-button:hover {
+  background-color: rgba(255, 77, 77, 0.1);
+  transform: scale(1.1);
+}
+
+.delete-button svg {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
+
+/* Điều chỉnh border cho cột mới */
+.history-table td:nth-last-child(2) {
+  border-right: 1px solid #00ffd5;
+}
+
