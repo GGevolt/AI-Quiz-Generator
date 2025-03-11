@@ -140,7 +140,11 @@ function displayQuestions(quizObject, container, userAnswers = {}) {
   quizObject.questions.forEach((q, index) => {
     const questionBox = document.createElement("div");
     questionBox.classList.add("question-box");
-    questionBox.innerHTML = `<p>${index + 1}. ${q.question}</p>`;
+
+    // Create paragraph for question text
+    const questionParagraph = document.createElement("p");
+    questionParagraph.textContent = `${index + 1}. ${q.question}`;
+    questionBox.appendChild(questionParagraph);
 
     const answerBox = document.createElement("div");
     answerBox.classList.add("answer-box");
@@ -149,19 +153,31 @@ function displayQuestions(quizObject, container, userAnswers = {}) {
       const answerItem = document.createElement("label");
       answerItem.classList.add("answer-item");
 
-      // Kiểm tra xem option có phải là câu trả lời đã lưu không
-      const isChecked = userAnswers[index] === option ? "checked" : "";
+      // Create radio input
+      const radioInput = document.createElement("input");
+      radioInput.type = "radio";
+      radioInput.name = `answer${index}`;
+      radioInput.value = option;
 
-      answerItem.innerHTML = `
-        <input type="radio" name="answer${index}" value="${option}" ${isChecked} />
-        <span>${String.fromCharCode(65 + optionIndex)}. ${option}</span>
-      `;
+      // Check if this option is the saved answer
+      if (userAnswers[index] === option) {
+        radioInput.checked = true;
+      }
 
-      // Lưu lại câu trả lời khi chọn
-      const inputElement = answerItem.querySelector("input");
-      inputElement.addEventListener("change", (e) => {
+      // Create label text
+      const labelText = document.createElement("span");
+      labelText.textContent = `${String.fromCharCode(
+        65 + optionIndex
+      )}. ${option}`;
+
+      // Append elements to answer item
+      answerItem.appendChild(radioInput);
+      answerItem.appendChild(labelText);
+
+      // Add event listener to the radio input
+      radioInput.addEventListener("change", (e) => {
         userAnswers[index] = e.target.value;
-        saveUserProgress(quizObject.quiz.id, userAnswers, "Pending"); // Lưu với trạng thái pending
+        saveUserProgress(quizObject.quiz.id, userAnswers, "Pending"); // Save with pending status
       });
 
       answerBox.appendChild(answerItem);
