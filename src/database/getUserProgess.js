@@ -17,6 +17,7 @@ function getUserProgress(quizId) {
         if (results) {
           resolve(results);
         }
+        resolve();
       };
 
       request.onerror = () => {
