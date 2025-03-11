@@ -1,360 +1,409 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Roboto", sans-serif;
-  }
-  
-  body {
-    background: url('https://i.pinimg.com/originals/46/41/61/4641611401ecb508c625eebe448da663.gif') no-repeat center center fixed;
-    background-size: cover;
-    color: #ffffff;
-    line-height: 1.6;
-    min-height: 100vh;
-  }
-  
-  /* Thêm overlay để làm tối nền GIF một chút để dễ đọc */
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: -1;
-  }
-  
-  .container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 15px;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 1;
-  }
-  
-  .card {
-    background-color: #121212;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-    border: 2px solid #00ffd5;
-    width: 100%;
-    max-height: 80vh;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .card-header {
-    padding: 20px 24px 10px;
-    border-bottom: 1px solid #2a2a2a;
-  }
-  
-  .card-header h1 {
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 4px;
-    color: #ffffff;
-  }
-  
-  .card-header p {
-    font-size: 14px;
-    color: #a0aec0;
-  }
-  
-  .card-content {
-    padding: 20px 24px;
-    flex: 1;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  background: url("https://i.pinimg.com/originals/46/41/61/4641611401ecb508c625eebe448da663.gif")
+    no-repeat center center fixed;
+  background-size: cover;
+  color: #ffffff;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Thêm overlay để làm tối nền GIF một chút để dễ đọc */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: -1;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 15px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.card {
+  background-color: #121212;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  border: 2px solid #00ffd5;
+  width: 100%;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-header {
+  padding: 20px 24px 10px;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.card-header h1 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #ffffff;
+}
+
+.card-header p {
+  font-size: 14px;
+  color: #a0aec0;
+}
+
+.card-content {
+  padding: 20px 24px;
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+  background-color: #121212;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+@media (min-width: 640px) {
   .filters {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 20px;
-    background-color: #121212;
-    position: sticky;
-    top: 0;
-    z-index: 2;
+    flex-direction: row;
   }
-  
-  @media (min-width: 640px) {
-    .filters {
-      flex-direction: row;
-    }
-  }
-  
-  .search-container {
-    position: relative;
-    flex: 1;
-  }
-  
-  .search-input {
-    width: 100%;
-    padding: 10px 10px 10px 35px;
-    border: 1px solid #00ffd5;
-    border-radius: 4px;
-    font-size: 14px;
-    background-color: #1a1a1a;
-    color: #ffffff;
-  }
-  
-  .search-icon {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #a0aec0;
-  }
-  
+}
+
+.search-container {
+  position: relative;
+  flex: 1;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 10px 10px 35px;
+  border: 1px solid #00ffd5;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a0aec0;
+}
+
+.select-container {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
   .select-container {
-    width: 100%;
+    width: 180px;
   }
-  
-  @media (min-width: 640px) {
-    .select-container {
-      width: 180px;
-    }
+}
+
+.difficulty-select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #00ffd5;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  cursor: pointer;
+  text-align: center;
+}
+
+.table-container {
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid #00ffd5;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  background-color: #121212;
+  scrollbar-width: thin;
+  scrollbar-color: #00ffd5 #1a1a1a;
+}
+
+/* Style cho thanh cuộn trên Chrome, Edge, và Safari */
+.table-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background-color: #00ffd5;
+  border-radius: 4px;
+  border: 2px solid #1a1a1a;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background-color: #00e6c0;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: center;
+}
+
+/* Giữ header cố định khi cuộn */
+.history-table thead {
+  position: sticky;
+  top: 0;
+  background-color: #1e1e1e;
+  z-index: 1;
+}
+
+.history-table th {
+  background-color: #1e1e1e;
+  padding: 12px 16px;
+  font-weight: 500;
+  color: #00ffd5;
+  border-bottom: 1px solid #00ffd5;
+  font-size: 14px;
+  text-align: center;
+}
+
+.history-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid#00ffd5;
+  font-size: 14px;
+  border-right: 1px solid #00ffd5;
+}
+
+/* Đảm bảo các cột có chiều rộng phù hợp */
+.history-table th,
+.history-table td {
+  min-width: 120px;
+}
+
+/* Điều chỉnh chiều rộng cụ thể cho một số cột */
+.history-table th:first-child,
+.history-table td:first-child {
+  min-width: 150px;
+}
+
+.history-table th:last-child,
+.history-table td:last-child {
+  min-width: 100px;
+}
+
+.history-table td:last-child {
+  border-right: none;
+}
+
+.history-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Animation cho hover row */
+.history-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+/* Hiệu ứng hover mượt mà hơn */
+.history-table tbody tr:hover {
+  background-color: rgba(0, 255, 213, 0.1);
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.easy {
+  background-color: #1a4731;
+  color: #4ade80;
+  border: 1px solid #166534;
+}
+
+.medium {
+  background-color: #fef3c7;
+  color: #854d0e;
+  border: 1px solid #f59e0b;
+}
+
+.difficulty {
+  background-color: #471a1a;
+  color: #f87171;
+  border: 1px solid #991b1b;
+}
+
+.score-cell,
+.action-cell {
+  text-align: center;
+}
+
+.review-link {
+  color: #60a5fa;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.review-link:hover {
+  text-decoration: underline;
+  color: #93c5fd;
+}
+
+.resume-link {
+  color: #60a5fa;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.resume-link:hover {
+  text-decoration: underline;
+  color: #93c5fd;
+}
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  position: sticky;
+  bottom: 0;
+  right: 0;
+  background-color: #121212;
+  padding: 10px 0;
+  z-index: 2;
+}
+
+.home-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #00ffd5;
+  color: #000000;
+  padding: 10px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.home-button:hover {
+  background-color: #00e6c0;
+}
+
+.home-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Thêm hiệu ứng hover cho các hàng trong bảng */
+.history-table tr:hover {
+  background-color: #1e1e1e;
+}
+
+/* Tùy chỉnh màu placeholder cho input */
+.search-input::placeholder {
+  color: #6b7280;
+}
+
+/* Tùy chỉnh màu selection */
+::selection {
+  background-color: #00ffd5;
+  color: #000000;
+}
+
+/* Kiểu dáng cho trạng thái */
+.status {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.completed {
+  background-color: #064e3b;
+  color: #6ee7b7;
+  border: 1px solid #059669;
+}
+
+.pending {
+  background-color: #713f12;
+  color: #fcd34d;
+  border: 1px solid #d97706;
+}
+
+/* Thêm hiệu ứng glow cho card */
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 10px rgba(0, 255, 213, 0.5);
   }
-  
-  .difficulty-select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #00ffd5;
-    border-radius: 4px;
-    font-size: 14px;
-    background-color: #1a1a1a;
-    color: #ffffff;
-    cursor: pointer;
-    text-align: center;
+  50% {
+    box-shadow: 0 0 20px rgba(0, 255, 213, 0.8);
   }
-  
-  .table-container {
-    max-height: 400px;
-    overflow-y: auto;
-    border: 1px solid #00ffd5;
-    border-radius: 6px;
-    margin-bottom: 20px;
-    background-color: #121212;
-    scrollbar-width: thin;
-    scrollbar-color: #00ffd5 #1a1a1a;
+  100% {
+    box-shadow: 0 0 10px rgba(0, 255, 213, 0.5);
   }
-  
-  /* Style cho thanh cuộn trên Chrome, Edge, và Safari */
-  .table-container::-webkit-scrollbar {
-    width: 8px;
-  }
-  
-  .table-container::-webkit-scrollbar-track {
-    background: #1a1a1a;
-    border-radius: 4px;
-  }
-  
-  .table-container::-webkit-scrollbar-thumb {
-    background-color: #00ffd5;
-    border-radius: 4px;
-    border: 2px solid #1a1a1a;
-  }
-  
-  .table-container::-webkit-scrollbar-thumb:hover {
-    background-color: #00e6c0;
-  }
-  
-  .history-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    text-align: center;
-  }
-  
-  /* Giữ header cố định khi cuộn */
-  .history-table thead {
-    position: sticky;
-    top: 0;
-    background-color: #1e1e1e;
-    z-index: 1;
-  }
-  
-  .history-table th {
-    background-color: #1e1e1e;
-    padding: 12px 16px;
-    font-weight: 500;
-    color: #00ffd5;
-    border-bottom: 1px solid #00ffd5;
-    font-size: 14px;
-    text-align: center;
-  }
-  
-  .history-table td {
-    padding: 12px 16px;
-    border-bottom: 1px solid#00ffd5;
-    font-size: 14px;
-    border-right: 1px solid #00ffd5;
-  }
-  
-  /* Đảm bảo các cột có chiều rộng phù hợp */
-  .history-table th,
-  .history-table td {
-    min-width: 120px;
-  }
-  
-  /* Điều chỉnh chiều rộng cụ thể cho một số cột */
-  .history-table th:first-child,
-  .history-table td:first-child {
-    min-width: 150px;
-  }
-  
-  .history-table th:last-child,
-  .history-table td:last-child {
-    min-width: 100px;
-  }
-  
-  .history-table td:last-child {
-    border-right: none;
-  }
-  
-  .history-table tr:last-child td {
-    border-bottom: none;
-  }
-  
-  /* Animation cho hover row */
-  .history-table tbody tr {
-    transition: background-color 0.2s ease;
-  }
-  
-  /* Hiệu ứng hover mượt mà hơn */
-  .history-table tbody tr:hover {
-    background-color: rgba(0, 255, 213, 0.1);
-  }
-  
-  .badge {
-    display: inline-block;
-    padding: 4px 8px;
-    border-radius: 9999px;
-    font-size: 12px;
-    font-weight: 500;
-  }
-  
-  .easy {
-    background-color: #1a4731;
-    color: #4ade80;
-    border: 1px solid #166534;
-  }
-  
-  .medium {
-    background-color: #fef3c7;
-    color: #854d0e;
-    border: 1px solid #f59e0b;
-  }
-  
-  .difficulty {
-    background-color: #471a1a;
-    color: #f87171;
-    border: 1px solid #991b1b;
-  }
-  
-  .score-cell,
-  .action-cell {
-    text-align: center;
-  }
-  
-  .review-link {
-    color: #60a5fa;
-    text-decoration: none;
-    font-weight: 500;
-  }
-  
-  .review-link:hover {
-    text-decoration: underline;
-    color: #93c5fd;
-  }
-  
-  .button-container {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 20px;
-  }
-  
-  .home-button {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background-color: #00ffd5;
-    color: #000000;
-    padding: 10px 16px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 14px;
-    transition: background-color 0.2s;
-  }
-  
-  .home-button:hover {
-    background-color: #00e6c0;
-  }
-  
-  .home-button svg {
-    width: 16px;
-    height: 16px;
-  }
-  
-  /* Thêm hiệu ứng hover cho các hàng trong bảng */
-  .history-table tr:hover {
-    background-color: #1e1e1e;
-  }
-  
-  /* Tùy chỉnh màu placeholder cho input */
-  .search-input::placeholder {
-    color: #6b7280;
-  }
-  
-  /* Tùy chỉnh màu selection */
-  ::selection {
-    background-color: #00ffd5;
-    color: #000000;
-  }
-  
-  /* Kiểu dáng cho trạng thái */
-  .status {
-    display: inline-block;
-    padding: 4px 8px;
-    border-radius: 9999px;
-    font-size: 12px;
-    font-weight: 500;
-  }
-  
-  .completed {
-    background-color: #064e3b;
-    color: #6ee7b7;
-    border: 1px solid #059669;
-  }
-  
-  .pending {
-    background-color: #713f12;
-    color: #fcd34d;
-    border: 1px solid #d97706;
-  }
-  
-  /* Thêm hiệu ứng glow cho card */
-  @keyframes glow {
-    0% {
-      box-shadow: 0 0 10px rgba(0, 255, 213, 0.5);
-    }
-    50% {
-      box-shadow: 0 0 20px rgba(0, 255, 213, 0.8);
-    }
-    100% {
-      box-shadow: 0 0 10px rgba(0, 255, 213, 0.5);
-    }
-  }
-  
-  .card {
-    animation: glow 3s infinite;
-  }
+}
+
+.card {
+  animation: glow 3s infinite;
+}
+
+/* Style cho cột Delete Quiz */
+.delete-cell {
+  text-align: center;
+}
+
+/* Style cho nút xóa */
+.delete-button {
+  background: none;
+  border: none;
+  color: #ff4d4d;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.delete-button:hover {
+  background-color: rgba(255, 77, 77, 0.1);
+  transform: scale(1.1);
+}
+
+.delete-button svg {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
+
+/* Điều chỉnh border cho cột mới */
+.history-table td:nth-last-child(2) {
+  border-right: 1px solid #00ffd5;
+}
