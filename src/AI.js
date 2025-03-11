@@ -47,6 +47,8 @@ document.addEventListener("componentLoaded", function () {
   console.log("DOM fully loaded and parsed"); // Check if the DOM is fully loaded
 
   const generateQuizButton = document.getElementById("gen-btn");
+  const helperText = document.getElementById("helper-text");
+
   if (generateQuizButton) {
     console.log("Button found");
     generateQuizButton.addEventListener(
@@ -58,8 +60,18 @@ document.addEventListener("componentLoaded", function () {
           document.getElementById("difficulty-select").value; // Add the id of the difficulty input
         const questionNumbers =
           document.getElementById("questions-count").value; // Add the id of the question numbers input
+
         if (!themeInput) {
-          console.error("Theme input is empty");
+          helperText.innerText = "Theme input is not empty";
+          helperText.classList.add("show");
+          return;
+        } else {
+          helperText.classList.remove("show");
+        }
+
+        if (questionNumbers < 1 || questionNumbers > 10) {
+          helperText.innerText = "Max questions is 10";
+          helperText.classList.add("show");
           return;
         }
 
