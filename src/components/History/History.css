@@ -275,7 +275,6 @@ body::before {
 .review-link:hover {
   text-decoration: underline;
   color: #93c5fd;
-}
 
 .resume-link {
   color: #60a5fa;
@@ -291,6 +290,7 @@ body::before {
   display: flex;
   justify-content: flex-end;
   margin-top: 20px;
+
   position: sticky;
   bottom: 0;
   right: 0;
@@ -376,6 +376,7 @@ body::before {
   animation: glow 3s infinite;
 }
 
+
 /* Style cho cột Delete Quiz */
 .delete-cell {
   text-align: center;
@@ -407,3 +408,4 @@ body::before {
 .history-table td:nth-last-child(2) {
   border-right: 1px solid #00ffd5;
 }
+
