@@ -2,9 +2,6 @@ import API_KEY from "../config.js";
 
 import addData from "./database/addData.js";
 
-const DB_NAME = "QuizDatabase";
-const DB_VERSION = 1;
-
 const SchemaType = {
   ARRAY: "ARRAY",
   OBJECT: "OBJECT",
