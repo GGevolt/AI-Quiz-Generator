@@ -10,7 +10,10 @@
 body {
   background: rgb(44, 43, 37);
   color: white;
-  overflow: hidden;
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 50px;
 }
 
 .matrix-bg {
@@ -26,24 +29,27 @@ body {
 }
 
 .container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
+  margin: 0 auto;
   text-align: center;
   width: 90%;
   max-width: 600px;
+  padding-top: 50px;
 }
 
 h1 {
   font-size: 50px;
   font-weight: 700;
   color: #00ffcc;
+  position: relative;
+  z-index: 5;
 }
 
 p {
   font-size: 18px;
   margin-bottom: 20px;
+  position: relative;
+  z-index: 5;
 }
 
 input[type="text"] {
@@ -80,6 +86,7 @@ button:hover {
   align-items: center;
   gap: 10px;
   margin-top: 15px;
+  flex-wrap: wrap;
 }
 
 .options select,
@@ -125,14 +132,17 @@ button:hover {
 .container-preview {
   display: none;
   max-width: 700px;
-  height: 500px;
-  margin: 60px auto;
+  height: auto;
+  min-height: 200px;
+  max-height: 500px;
+  margin: 30px auto 0;
   background: rgba(0, 0, 0, 0.7);
   border-radius: 10px;
   border: 1px solid #00ffcc;
   box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
   overflow-y: auto;
   position: relative;
+  top: -10px; /* Move up to avoid sticking to bottom */
 }
 
 .container-preview.open {
@@ -256,22 +266,25 @@ button:hover {
 
 /* LOADER SPINNER CSS */
 #loader {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   height: 100vh;
   width: 100%;
   display: none;
+  z-index: 100;
+}
 
-  .loader--background {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.loader--background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #loader.open {
@@ -288,6 +301,7 @@ button:hover {
   box-sizing: border-box;
   animation: rotationBack 1s ease-in-out infinite reverse;
 }
+
 .loader::before {
   content: "";
   box-sizing: border-box;
@@ -300,6 +314,7 @@ button:hover {
   background: #00ffcc;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
 }
+
 .loader::after {
   content: "";
   box-sizing: border-box;
@@ -313,6 +328,7 @@ button:hover {
   transform: translate(-50%, -50%);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
 }
+
 @keyframes rotationBack {
   0% {
     transform: rotate(0deg);
@@ -322,6 +338,46 @@ button:hover {
   }
 }
 
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 40px;
+  }
+
+  .container {
+    padding-top: 30px;
+  }
+
+  .container-preview {
+    max-height: 450px;
+    top: -30px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 32px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  .options select,
+  .options input[type="number"] {
+    padding: 6px;
+    font-size: 12px;
+  }
+
+  .history-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .container-preview {
+    max-height: 400px;
+    top: -20px;
+  }
 #helper-text {
   color: red;
   margin-top: 10px;
