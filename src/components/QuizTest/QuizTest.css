@@ -1,3 +1,4 @@
+/* Reset cơ bản */
 * {
   margin: 0;
   padding: 0;
@@ -5,6 +6,17 @@
   font-family: "Orbitron", sans-serif;
 }
 
+body {
+  background-color: #0d0d0d;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Hiệu ứng nền matrix */
 .matrix-bg {
   position: fixed;
   top: 0;
@@ -13,173 +25,154 @@
   height: 100%;
   background: url("https://i.pinimg.com/originals/46/41/61/4641611401ecb508c625eebe448da663.gif")
     repeat;
-  opacity: 0.3;
+  opacity: 0.2;
   z-index: -1;
 }
 
 .quiz-container {
   display: flex;
-  width: 100%;
   flex-direction: column;
-  gap: 45px;
-  background: rgba(0, 0, 0, 0.7);
-  min-height: 100vh;
-  padding: 20px 0;
+  align-items: center;
+  gap: 30px;
+  background: rgba(0, 0, 0, 0.85);
+  padding: 40px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 800px;
+  box-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
 }
+
+/* Thông tin quiz */
 .info-container {
   display: grid;
-  width: 100%;
-  max-width: 976px;
-  margin: 0 auto;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1);
-  padding: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
   border: 1px solid #00ffcc;
   background: rgba(0, 0, 0, 0.7);
-  color: white;
   border-radius: 8px;
+  width: 100%;
 }
+
 .info-item {
   display: flex;
   flex-direction: column;
-  width: 298px;
-  gap: 13px;
-}
-.text-title {
-  font-size: 16px;
-}
-.topic-content {
-  color: #2563eb;
-  font-size: 20px;
-  font-weight: 700;
-}
-.medium-content {
-  background-color: #fef3c7;
-  color: #92400e;
-  font-size: 16px;
-  font-weight: 700;
-  width: max-content;
-  padding: 4px 8px;
-  border-radius: 99px;
-}
-.time-content {
-  color: #dc2626;
-  font-size: 20px;
-  font-weight: 700;
+  gap: 8px;
 }
 
-/* Thêm CSS cho questions-container */
+.text-title {
+  font-size: 16px;
+  color: #00ffcc;
+  font-weight: bold;
+}
+
+.topic-content {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ff6666;
+  text-transform: uppercase;
+}
+
+.medium-content {
+  background: #fef3c7;
+  color: #92400e;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+/* Câu hỏi và đáp án */
 .questions-container {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 976px;
-  margin: 0 auto;
   gap: 20px;
+  width: 100%;
 }
 
 .question-box {
-  display: flex;
-  width: 100%;
-  margin: 0 auto;
-  max-width: 704px;
-  padding: 20px;
-  /* border: 1px solid #00ffcc; */
   background: #00ffcc;
-  color: black;
+  color: #0d0d0d;
+  padding: 15px;
   border-radius: 8px;
-}
-.question-box p {
   font-size: 18px;
-  font-weight: 700;
+  font-weight: bold;
 }
+
 .answer-box {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 958px;
-  margin: 0 auto;
-  gap: 16px;
+  gap: 12px;
 }
+
 .answer-item {
   display: flex;
   align-items: center;
-  padding: 17px;
+  padding: 12px;
   border: 1px solid #00ffcc;
   border-radius: 8px;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.6);
   color: white;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
   cursor: pointer;
 }
-.answer-item input[type="radio"] {
-  width: 20px;
-  height: 20px;
-  accent-color: #00ffcc;
-  margin-right: 10px;
-}
-.answer-item label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-}
-.answer-item label span {
-  font-weight: bold;
-  background-color: #00ffcc;
-  padding: 4px 8px;
-  border-radius: 99px;
-  color: black;
-  min-width: 30px;
-  text-align: center;
-}
+
 .answer-item:hover {
-  background-color: #505a58;
-  opacity: 90%;
+  background: #fafad2;
+  color: black;
 }
-.answer-item-active {
-  background-color: #00cc99;
-  opacity: 90%;
+
+.answer-item input[type="radio"] {
+  margin-right: 10px;
+  accent-color: #00ffcc;
 }
+
+/* Nút bấm */
 .button-group {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 23px;
-  padding-top: 20px;
+  justify-content: space-between;
+  gap: 15px;
+  width: 100%;
 }
+
 .save-button,
 .submit-button {
   font-size: 16px;
-  font-weight: 400;
+  font-weight: bold;
   border-radius: 8px;
   border: none;
   padding: 12px 24px;
-  transition: transform 0.2s ease;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
 }
+
 .save-button {
-  background-color: #2563eb;
-  color: white;
+  background-color: transparent;
+  color: #00ffcc;
+  border: 2px solid #00ffcc;
 }
+
 .submit-button {
-  background-color: #059669;
+  background-color: #ff6a6a;
   color: white;
 }
+
 .save-button:hover,
 .submit-button:hover {
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
 @media only screen and (max-width: 600px) {
   .quiz-container {
-    padding: 16px;
+    padding: 20px;
   }
   .info-container {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
   }
   .button-group {
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
   }
 }
