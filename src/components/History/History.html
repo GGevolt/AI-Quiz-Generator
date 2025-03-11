@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>🕒 History</title>
     <link rel="stylesheet" href="History.css" />
+    <script type="module" src="History.js" defer></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
       rel="stylesheet"
@@ -18,14 +19,31 @@
           <p>View your quiz attempt history and performance</p>
         </div>
         <div class="card-content">
-           <div class="filters">
-                <div class="search-container">   <!-- Kính lúp -->
-                    <input type="text" placeholder="Search by topic" class="search-input" id="search-topic">
-                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
-                </div>
+          <div class="filters">
+            <div class="search-container">
+              <!-- Kính lúp -->
+              <input
+                type="text"
+                placeholder="Search by topic"
+                class="search-input"
+                id="search-topic"
+              />
+              <svg
+                class="search-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </div>
             <div class="select-container">
               <select class="difficulty-select" id="history-difficulty">
                 <option value="All" selected>All Difficulty</option>
@@ -49,7 +67,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <!-- <tr>
                   <td>3/11/2025 10:09 AM</td>
                   <td>math</td>
                   <td><span class="badge easy">Easy</span></td>
@@ -86,17 +104,27 @@
                       </svg>
                     </button>
                   </td>
-                </tr>
+                </tr> -->
               </tbody>
             </table>
-          </div> -->
-  <!-- Nút Home -->
+          </div>
+          <!-- Nút Home -->
           <div class="button-container">
             <a href="#" class="home-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
               Home
             </a>
           </div>
@@ -105,4 +133,3 @@
     </div>
   </body>
 </html>
-

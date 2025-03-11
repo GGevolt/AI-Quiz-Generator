@@ -1,6 +1,7 @@
 import queryHistory from "../../database/queryHistory.js";
 
 document.addEventListener("DOMContentLoaded", async function () {
+  console.log("hello");
   const searchInput = document.getElementById("search-topic");
   const difficultySelect = document.getElementById("history-difficulty");
   const tableBody = document.querySelector(".history-table tbody");
@@ -11,7 +12,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   // Add event listeners for filtering
   searchInput.addEventListener("input", debounce(loadQuizHistory, 300));
   difficultySelect.addEventListener("change", loadQuizHistory);
-
   // Function to load quiz history with filters
   async function loadQuizHistory() {
     const topic = searchInput.value.trim();
@@ -91,6 +91,15 @@ document.addEventListener("DOMContentLoaded", async function () {
       <td><span class="status ${statusValue.toLocaleLowerCase()}">${statusValue}</span></td>
       <td class="action-cell">
         ${actionHtml}
+      </td>
+      <td class="delete-cell">
+        <button class="delete-button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 6h18"></path>
+            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+          </svg>
+        </button>
       </td>
     `;
 
