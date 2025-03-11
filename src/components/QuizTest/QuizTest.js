@@ -2,6 +2,7 @@ import loadQuiz from "../../database/readData.js";
 import caculateScore from "../../database/caculateScore.js";
 import saveUserProgress from "../../database/updateData.js";
 import readQuiz from "../../database/readQuiz.js";
+import getUserProgress from "../../database/getUserProgess.js";
 
 const getIdFromUrl = () => {
   const urlParams = new URLSearchParams(window.location.search);
@@ -18,13 +19,12 @@ document.addEventListener("DOMContentLoaded", async function () {
   displayQuizInfo(quizId);
   const quizObject = await loadQuiz(quizId);
   const questsContainer = document.getElementById("quest-container");
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const answersParam = urlParams.get("answers");
-  const userAnswers = answersParam
-    ? JSON.parse(decodeURIComponent(answersParam))
-    : {};
-  displayQuestions(quizObject, questsContainer, userAnswers);
+  const UserProgress = await getUserProgress(quizId);
+  if (UserProgress) {
+    displayQuestions(quizObject, questsContainer, UserProgress.answers);
+  } else {
+    displayQuestions(quizObject, questsContainer);
+  }
   const submitBtn = document.getElementById("submit-quiz");
   //submit button event listener
   submitBtn.addEventListener("click", () => {

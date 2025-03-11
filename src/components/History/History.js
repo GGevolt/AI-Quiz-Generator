@@ -1,4 +1,5 @@
 import queryHistory from "../../database/queryHistory.js";
+import deleteQuizWithQuestions from "../../database/deleteData.js";
 
 document.addEventListener("DOMContentLoaded", async function () {
   const searchInput = document.getElementById("search-topic");
@@ -11,7 +12,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   // Add event listeners for filtering
   searchInput.addEventListener("input", debounce(loadQuizHistory, 300));
   difficultySelect.addEventListener("change", loadQuizHistory);
-
   // Function to load quiz history with filters
   async function loadQuizHistory() {
     const topic = searchInput.value.trim();
@@ -38,8 +38,6 @@ document.addEventListener("DOMContentLoaded", async function () {
           tableBody.appendChild(row);
         });
       }
-      // Add event listeners to resume buttons after rendering
-      addResumeEventListeners();
     } catch (error) {
       console.error("Error loading quiz history:", error);
       tableBody.innerHTML = `
@@ -70,7 +68,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     // Determine status class
-    const statusClass = quiz.totalScore !== null ? "completed" : "pending";
     const statusValue = quiz.totalScore !== null ? "Completed" : "Pending";
 
     // Determine action link text and URL based on status
@@ -80,7 +77,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       actionHtml = `<a href="./src/components/QuizResult/QuizResult.html?id=${quiz.id}" class="review-link">Review Quiz</a>`;
     } else {
       // For pending quizzes, add a data attribute and special class
-      actionHtml = `<a href="#" class="resume-link" data-quiz-id="${quiz.id}">Resume Quiz</a>`;
+      actionHtml = `<a href="../../components/QuizTest/QuizTest.html?id=${quiz.id}" class="resume-link">Resume Quiz</a>`;
     }
 
     // Create row HTML
@@ -91,58 +88,42 @@ document.addEventListener("DOMContentLoaded", async function () {
       <td class="score-cell">${
         quiz.totalScore !== null ? quiz.totalScore : "-"
       }/${quiz.questionsCount}</td>
-      <td><span class="status ${statusClass}">${statusValue}</span></td>
+      <td><span class="status ${statusValue.toLocaleLowerCase()}">${statusValue}</span></td>
       <td class="action-cell">
         ${actionHtml}
       </td>
+      <td class="delete-cell">
+        <button class="delete-button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 6h18"></path>
+            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+          </svg>
+        </button>
+      </td>
     `;
 
-    return row;
-  }
+      // Xử lý sự kiện xóa quiz
+    row.querySelector(".delete-button").addEventListener("click", async function () {
+      const confirmDelete = confirm("Are you sure you want to delete this quiz?");
+      if (!confirmDelete) return;
 
-  // Function to add event listeners to resume buttons
-  function addResumeEventListeners() {
-    const resumeLinks = document.querySelectorAll(".resume-link");
-    resumeLinks.forEach((link) => {
-      link.addEventListener("click", function (e) {
-        e.preventDefault();
-        const quizId = this.getAttribute("data-quiz-id");
-        console.log(`Resuming quiz ${quizId}`);
-        resumeQuiz(quizId);
-        // Add your custom resume logic here
-      });
+      try {
+        // Gọi API xóa quiz theo ID
+        await deleteQuizWithQuestions(quiz.id);
+
+        // Xóa hàng khỏi bảng ngay lập tức để phản hồi nhanh
+        row.remove();
+
+        // Cập nhật lại danh sách quiz từ database
+        await loadQuizHistory();
+      } catch (error) {
+        console.error("Error deleting quiz:", error);
+        alert("Failed to delete quiz. Please try again.");
+      }
     });
-  }
-
-  // Function to handle resuming a quiz
-  function resumeQuiz(quizId) {
-    const request = indexedDB.open("QuizDatabase", 1);
-
-    request.onsuccess = (event) => {
-      const db = event.target.result;
-      const transaction = db.transaction("UserProgress", "readonly");
-      const store = transaction.objectStore("UserProgress");
-      const getRequest = store.get(Number(quizId));
-
-      getRequest.onsuccess = () => {
-        const progressData = getRequest.result;
-        if (progressData) {
-          console.log("Resuming quiz with saved answers:", progressData);
-          const answersString = encodeURIComponent(
-            JSON.stringify(progressData.answers)
-          );
-          window.location.href = `../../components/QuizTest/QuizTest.html?id=${quizId}&answers=${answersString}`;
-        } else {
-          console.warn("No saved progress found, starting fresh.");
-          window.location.href = `../../components/QuizTest/QuizTest.html?id=${quizId}`;
-        }
-      };
-
-      getRequest.onerror = () => {
-        console.error("Error retrieving quiz progress.");
-        window.location.href = `../../components/QuizTest/QuizTest.html?id=${quizId}`;
-      };
-    };
+    
+    return row;
   }
 
   // Debounce function to limit how often a function is called
