@@ -20,7 +20,11 @@ document.addEventListener("DOMContentLoaded", async function () {
   const quizObject = await loadQuiz(quizId);
   const questsContainer = document.getElementById("quest-container");
   const UserProgress = await getUserProgress(quizId);
-  displayQuestions(quizObject, questsContainer, UserProgress.answers);
+  if (UserProgress) {
+    displayQuestions(quizObject, questsContainer, UserProgress.answers);
+  } else {
+    displayQuestions(quizObject, questsContainer);
+  }
   const submitBtn = document.getElementById("submit-quiz");
   //submit button event listener
   submitBtn.addEventListener("click", () => {
