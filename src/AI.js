@@ -43,7 +43,7 @@ const schema = {
   },
 };
 
-document.addEventListener("componentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
   console.log("DOM fully loaded and parsed"); // Check if the DOM is fully loaded
 
   const generateQuizButton = document.getElementById("gen-btn");
