@@ -1,6 +1,6 @@
 import API_KEY from "../config.js";
-
 import addData from "./database/addData.js";
+import checkQuiz from "./database/checkQuiz.js";
 
 const SchemaType = {
   ARRAY: "ARRAY",
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Button found");
     generateQuizButton.addEventListener(
       "click",
-      debounce(function () {
+      debounce(async function () {
         const themeInput = document.getElementById("theme-input").value; // Add the id of the theme input
         const languageInput = document.getElementById("language-select").value; // Add the id of the language input
         const difficultyInput =
@@ -72,6 +72,23 @@ document.addEventListener("DOMContentLoaded", function () {
         if (questionNumbers < 1 || questionNumbers > 10) {
           helperText.innerText = "Max questions is 10";
           helperText.classList.add("show");
+          return;
+        }
+
+        try {
+          // 🔍 Kiểm tra xem quiz có tồn tại hay không
+          const existingQuiz = await checkQuiz(themeInput);
+          if (existingQuiz) {
+            const confirmCreate = confirm(
+              `A quiz with topic "${themeInput}"  already exists and is incomplete. Do you still want to create a new quiz?`
+            );
+            if (!confirmCreate) {
+              return; // ⛔ Hủy nếu người dùng không muốn tạo mới
+            }
+          }
+        } catch (error) {
+          console.error("Lỗi khi kiểm tra quiz trong database:", error);
+          alert("Có lỗi xảy ra khi kiểm tra dữ liệu. Vui lòng thử lại!");
           return;
         }
 
