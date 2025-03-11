@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./QuizTest.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <script type="module" src="QuizTest.js" defer></script>
+    <title>Quiz</title>
+  </head>
+  <body>
+    <div class="matrix-bg"></div>
+    <div class="quiz-container">
+      <div class="info-container">
+        <div class="info-item">
+          <p class="text-title">Quiz Topic</p>
+          <p class="topic-content" id="topic-name"></p>
+        </div>
+        <div class="info-item">
+          <p class="text-title">Difficulty</p>
+          <div class="medium-content">
+            <p id="difficulty-name">Medium</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <p class="text-title">Quiz ID</p>
+          <p id="id-name"></p>
+        </div>
+        <div class="info-item">
+          <p class="text-title">Date</p>
+          <p id="date-name"></p>
+        </div>
+        <div class="info-item">
+          <p class="text-title"></p>
+          <div class="time-content">
+            <p></p>
+          </div>
+        </div>
+        <div class="info-item" id="info-item-score">
+          <p class="text-title">SCORE</p>
+          <p id="info-item-score--text">10 / 10</p>
+        </div>
+      </div>
+      <div class="questions-container" id="quest-container">
+        <!-- template for questions -->
+        <!-- <div class="question-box">
+          <p>Question ... ?</p>
+        </div>
+        <div class="answer-box">
+          <label class="answer-item">
+            <input type="radio" name="answer" value="A" />
+            <span>A</span>
+          </label>
+          <label class="answer-item">
+            <input type="radio" name="answer" value="B" />
+            <span>B</span>
+          </label>
+          <label class="answer-item">
+            <input type="radio" name="answer" value="C" />
+            <span>C</span>
+          </label>
+          <label class="answer-item">
+            <input type="radio" name="answer" value="D" />
+            <span>D</span>
+          </label>
+        </div> -->
+      </div>
+      <div class="button-group">
+        <button class="reset-button" id="retry-quiz" type="button">
+          <i class="fa-solid fa-arrow-rotate-right"></i> Reset
+        </button>
+        <button class="save-button" type="button">
+          <i class="fas fa-home"></i> Home
+        </button>
+        <button class="submit-button" id="submit-quiz" type="submit">
+          <i class="fas fa-paper-plane"></i> Submit
+        </button>
+      </div>
+    </div>
+  </body>
+</html>

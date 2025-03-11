@@ -1,0 +1,248 @@
+/* Reset cơ bản */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Orbitron", sans-serif;
+}
+
+body {
+  background-color: #0d0d0d;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Hiệu ứng nền matrix */
+.matrix-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("https://i.pinimg.com/originals/46/41/61/4641611401ecb508c625eebe448da663.gif")
+    repeat;
+  opacity: 0.2;
+  z-index: -1;
+}
+
+.quiz-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  background: rgba(0, 0, 0, 0.85);
+  padding: 40px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 800px;
+  box-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
+}
+
+/* Thông tin quiz */
+.info-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  border: 1px solid #00ffcc;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+  width: 100%;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.text-title {
+  font-size: 16px;
+  color: #00ffcc;
+  font-weight: bold;
+}
+
+.topic-content {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ff6666;
+  text-transform: uppercase;
+}
+
+.medium-content {
+  background: #fef3c7;
+  color: #92400e;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+/* Câu hỏi và đáp án */
+.questions-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.question-box {
+  background: #00ffcc;
+  color: #0d0d0d;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.answer-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.answer-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid #00ffcc;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.answer-item.success {
+  border: 2px solid #33ff00;
+  background: rgba(51, 255, 0, 0.15);
+  position: relative;
+}
+
+.answer-item.success::after {
+  content: "✓";
+  position: absolute;
+  right: 15px;
+  color: #33ff00;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.answer-item.success input[type="radio"] {
+  accent-color: #33ff00;
+}
+
+.answer-item.fail {
+  border: 2px solid #ff0000;
+  background: rgba(255, 0, 0, 0.15);
+  position: relative;
+}
+
+.answer-item.fail::after {
+  content: "✗";
+  position: absolute;
+  right: 15px;
+  color: #ff0000;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.answer-item.fail input[type="radio"] {
+  accent-color: #ff0000;
+}
+
+.explanation-box {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  animation: fadeIn 0.5s ease-in-out;
+  font-size: 16px;
+  color: #ffdd57;
+  background: rgba(255, 221, 87, 0.1);
+  padding: 8px;
+  border-left: 4px solid #ffdd57;
+  border-radius: 5px;
+}
+
+.answer-item:hover {
+  background: #fafad2;
+  color: black;
+}
+
+.answer-item input[type="radio"] {
+  margin-right: 10px;
+  accent-color: #00ffcc;
+}
+
+/* Nút bấm */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  width: 100%;
+}
+
+.save-button,
+.submit-button,
+.reset-button {
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  border: none;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.save-button {
+  background-color: transparent;
+  color: #00ffcc;
+  border: 2px solid #00ffcc;
+}
+
+.submit-button {
+  background-color: #ff6a6a;
+  color: white;
+}
+
+.save-button:hover,
+.submit-button:hover,
+.reset-button:hover {
+  transform: scale(1.1);
+}
+
+@media only screen and (max-width: 600px) {
+  .quiz-container {
+    padding: 20px;
+  }
+  .info-container {
+    grid-template-columns: 1fr;
+  }
+  .button-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+#info-item-score {
+  display: none;
+}
+
+#info-item-score--text {
+  color: #ff6a6a;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.reset-button {
+  background-color: transparent;
+  color: white;
+  border: 2px solid #fff;
+  display: none;
+}
