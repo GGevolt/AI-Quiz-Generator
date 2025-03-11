@@ -59,6 +59,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     // window.location.href = `../QuizResult/QuizResult.html?id=${quizObject.quiz.id}`;
     saveUserProgress(quizId, answers, "Completed");
     displayResult(quizObject);
+    // Change submit button text and disable it
+    submitBtn.textContent = "Quiz Submitted";
+    submitBtn.disabled = true;
   });
 });
 
@@ -102,10 +105,6 @@ function displayResult(quizObject) {
   allRadioInputs.forEach((input) => {
     input.disabled = true;
   });
-
-  // Change submit button text and disable it
-  submitBtn.textContent = "Quiz Submitted";
-  submitBtn.disabled = true;
 }
 
 async function displayQuizInfo(quizId) {
