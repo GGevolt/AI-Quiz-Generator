@@ -188,7 +188,8 @@ body {
 }
 
 .save-button,
-.submit-button {
+.submit-button,
+.reset-button {
   font-size: 16px;
   font-weight: bold;
   border-radius: 8px;
@@ -211,7 +212,8 @@ body {
 }
 
 .save-button:hover,
-.submit-button:hover {
+.submit-button:hover,
+.reset-button:hover {
   transform: scale(1.1);
 }
 
@@ -226,4 +228,21 @@ body {
     flex-direction: column;
     gap: 10px;
   }
+}
+
+#info-item-score {
+  display: none;
+}
+
+#info-item-score--text {
+  color: #ff6a6a;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.reset-button {
+  background-color: transparent;
+  color: white;
+  border: 2px solid #fff;
+  display: none;
 }

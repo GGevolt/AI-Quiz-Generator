@@ -49,6 +49,8 @@ function caculateScore(quizzObj, answersArr) {
   dbRequest.onerror = function () {
     console.log("Lỗi khi mở IndexedDB");
   };
+
+  return score;
 }
 
 export default caculateScore;

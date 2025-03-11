@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     let actionHtml;
     if (statusValue === "Completed") {
       // For completed quizzes, use a regular link
-      actionHtml = `<a href="./src/components/QuizResult/QuizResult.html?id=${quiz.id}" class="review-link">Review Quiz</a>`;
+      actionHtml = `<a href="../../components/QuizTest/QuizTest.html?id=${quiz.id}" class="resume-link">Review Quiz</a>`;
     } else {
       // For pending quizzes, add a data attribute and special class
       actionHtml = `<a href="../../components/QuizTest/QuizTest.html?id=${quiz.id}" class="resume-link">Resume Quiz</a>`;
@@ -103,26 +103,30 @@ document.addEventListener("DOMContentLoaded", async function () {
       </td>
     `;
 
-      // Xử lý sự kiện xóa quiz
-    row.querySelector(".delete-button").addEventListener("click", async function () {
-      const confirmDelete = confirm("Are you sure you want to delete this quiz?");
-      if (!confirmDelete) return;
+    // Xử lý sự kiện xóa quiz
+    row
+      .querySelector(".delete-button")
+      .addEventListener("click", async function () {
+        const confirmDelete = confirm(
+          "Are you sure you want to delete this quiz?"
+        );
+        if (!confirmDelete) return;
 
-      try {
-        // Gọi API xóa quiz theo ID
-        await deleteQuizWithQuestions(quiz.id);
+        try {
+          // Gọi API xóa quiz theo ID
+          await deleteQuizWithQuestions(quiz.id);
 
-        // Xóa hàng khỏi bảng ngay lập tức để phản hồi nhanh
-        row.remove();
+          // Xóa hàng khỏi bảng ngay lập tức để phản hồi nhanh
+          row.remove();
 
-        // Cập nhật lại danh sách quiz từ database
-        await loadQuizHistory();
-      } catch (error) {
-        console.error("Error deleting quiz:", error);
-        alert("Failed to delete quiz. Please try again.");
-      }
-    });
-    
+          // Cập nhật lại danh sách quiz từ database
+          await loadQuizHistory();
+        } catch (error) {
+          console.error("Error deleting quiz:", error);
+          alert("Failed to delete quiz. Please try again.");
+        }
+      });
+
     return row;
   }
 

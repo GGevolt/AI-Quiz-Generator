@@ -26,7 +26,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     displayQuestions(quizObject, questsContainer);
   }
   if (quizObject.quiz.totalScore !== null) {
-    console.log("hello");
     displayResult(quizObject);
   }
   const submitBtn = document.getElementById("submit-quiz");
@@ -55,7 +54,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       }
     }
 
-    caculateScore(quizObject, answers);
+    const score = caculateScore(quizObject, answers);
+    quizObject.quiz.totalScore = score;
     // window.location.href = `../QuizResult/QuizResult.html?id=${quizObject.quiz.id}`;
     saveUserProgress(quizId, answers, "Completed");
     displayResult(quizObject);
@@ -104,6 +104,21 @@ function displayResult(quizObject) {
   const allRadioInputs = document.querySelectorAll('input[type="radio"]');
   allRadioInputs.forEach((input) => {
     input.disabled = true;
+  });
+
+  // Display score and retry button
+  const scoreContainer = document.getElementById("info-item-score");
+  const score = document.getElementById("info-item-score--text");
+  const retryBtn = document.getElementById("retry-quiz");
+
+  scoreContainer.style.display = "block";
+  retryBtn.style.display = "block";
+
+  score.innerText = `${quizObject.quiz.totalScore} / ${quizObject.quiz.questionsCount}`;
+
+  retryBtn.addEventListener("click", async function () {
+    await resetUserAnswers(quizObject.quiz.id);
+    window.location.href = `../QuizTest/QuizTest.html?id=${quizObject.quiz.id}`;
   });
 }
 
@@ -177,5 +192,55 @@ if (homeButton) {
   homeButton.addEventListener("click", (e) => {
     e.preventDefault();
     window.location.href = "../../../index.html";
+  });
+}
+
+//Reset User's Answers
+function resetUserAnswers(quizId) {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open("QuizDatabase", 1);
+
+    request.onsuccess = function (event) {
+      let db = event.target.result;
+      let transaction = db.transaction(["UserProgress", "Quizz"], "readwrite");
+
+      let userProgressStore = transaction.objectStore("UserProgress");
+      let quizzStore = transaction.objectStore("Quizz");
+
+      // Lấy dữ liệu từ UserProgress
+      let userProgressRequest = userProgressStore.get(quizId);
+      userProgressRequest.onsuccess = function () {
+        let userProgress = userProgressRequest.result;
+        if (userProgress) {
+          userProgress.answers = []; // Reset câu trả lời
+          userProgressStore.put(userProgress);
+        }
+      };
+
+      // Lấy dữ liệu từ Quizz
+      let quizzRequest = quizzStore.get(quizId);
+      quizzRequest.onsuccess = function () {
+        let quizzData = quizzRequest.result;
+        if (quizzData) {
+          quizzData.totalScore = null; // Reset totalScore
+          quizzStore.put(quizzData);
+        }
+      };
+
+      transaction.oncomplete = function () {
+        console.log(`Reset thành công cho quizId: ${quizId}`);
+        resolve();
+      };
+
+      transaction.onerror = function () {
+        console.error("Lỗi transaction khi reset dữ liệu");
+        reject("Lỗi transaction khi reset dữ liệu");
+      };
+    };
+
+    request.onerror = function () {
+      console.error("Lỗi mở IndexedDB");
+      reject("Lỗi mở IndexedDB");
+    };
   });
 }
