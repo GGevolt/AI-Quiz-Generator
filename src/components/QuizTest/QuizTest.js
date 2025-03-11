@@ -18,7 +18,11 @@ document.addEventListener("DOMContentLoaded", async function () {
   displayQuizInfo(quizId);
   const quizObject = await loadQuiz(quizId);
   const questsContainer = document.getElementById("quest-container");
-  displayQuestions(quizObject, questsContainer);
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const answersParam = urlParams.get("answers");
+  const userAnswers = answersParam ? JSON.parse(decodeURIComponent(answersParam)) : {};
+  displayQuestions(quizObject, questsContainer,userAnswers);
   const submitBtn = document.getElementById("submit-quiz");
   //submit button event listener
   submitBtn.addEventListener("click", () => {
@@ -55,9 +59,7 @@ async function displayQuizInfo(quizId) {
   document.getElementById("date-name").textContent = formattedDate;
 }
 
-function displayQuestions(quizObject, container) {
-  const userAnswers = {};
-
+function displayQuestions(quizObject, container, userAnswers = {}) {
   quizObject.questions.forEach((q, index) => {
     const questionBox = document.createElement("div");
     questionBox.classList.add("question-box");
@@ -69,18 +71,36 @@ function displayQuestions(quizObject, container) {
     q.options.forEach((option, optionIndex) => {
       const answerItem = document.createElement("label");
       answerItem.classList.add("answer-item");
+
+      // Kiểm tra xem option có phải là câu trả lời đã lưu không
+      const isChecked = userAnswers[index] === option ? "checked" : ""; 
+
       answerItem.innerHTML = `
-          <input type="radio" name="answer${index}" value="${option}" />
-          <span>${String.fromCharCode(65 + optionIndex)}. ${option}</span>
-        `;
-      answerItem.querySelector("input").addEventListener("change", (e) => {
-        userAnswers[index] = e.target.value; // Cập nhật câu trả lời của người dùng
-        saveUserProgress(quizObject.quiz.id, userAnswers, "Pending");
+        <input type="radio" name="answer${index}" value="${option}" ${isChecked} />
+        <span>${String.fromCharCode(65 + optionIndex)}. ${option}</span>
+      `;
+
+      // Lưu lại câu trả lời khi chọn
+      const inputElement = answerItem.querySelector("input");
+      inputElement.addEventListener("change", (e) => {
+        userAnswers[index] = e.target.value;
+        saveUserProgress(quizObject.quiz.id, userAnswers, "Pending"); // Lưu với trạng thái pending
       });
+
       answerBox.appendChild(answerItem);
     });
 
     container.appendChild(questionBox);
     container.appendChild(answerBox);
+  });
+
+  console.log("Loaded answers:", userAnswers); // Kiểm tra log
+}
+
+const homeButton = document.querySelector(".save-button");
+if (homeButton) {
+  homeButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.href = "../../../index.html";
   });
 }

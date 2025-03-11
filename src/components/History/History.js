@@ -70,11 +70,12 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     // Determine status class
-    const statusClass = quiz.status === "Completed" ? "completed" : "pending";
+    const statusClass = quiz.totalScore !== null ? "completed" : "pending";
+    const statusValue = quiz.totalScore !== null ? "Completed" : "Pending";
 
     // Determine action link text and URL based on status
     let actionHtml;
-    if (quiz.status === "Completed") {
+    if (statusValue === "Completed") {
       // For completed quizzes, use a regular link
       actionHtml = `<a href="./src/components/QuizResult/QuizResult.html?id=${quiz.id}" class="review-link">Review Quiz</a>`;
     } else {
@@ -90,7 +91,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       <td class="score-cell">${
         quiz.totalScore !== null ? quiz.totalScore : "-"
       }/10</td>
-      <td><span class="status ${statusClass}">${quiz.status}</span></td>
+      <td><span class="status ${statusClass}">${statusValue}</span></td>
       <td class="action-cell">
         ${actionHtml}
       </td>
@@ -107,7 +108,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         e.preventDefault();
         const quizId = this.getAttribute("data-quiz-id");
         console.log(`Resuming quiz ${quizId}`);
-
+        resumeQuiz(quizId);
         // Add your custom resume logic here
       });
     });
@@ -115,13 +116,33 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   // Function to handle resuming a quiz
   function resumeQuiz(quizId) {
-    // Your custom resume logic goes here
-    console.log(`Custom resume logic for quiz ${quizId}`);
-
-    // For example, you might want to load the quiz state from storage
-    // and then navigate to the quiz page
-    window.location.href = `./quiz.html?id=${quizId}`;
+    const request = indexedDB.open("QuizDatabase", 1);
+  
+    request.onsuccess = (event) => {
+      const db = event.target.result;
+      const transaction = db.transaction("UserProgress", "readonly");
+      const store = transaction.objectStore("UserProgress");
+      const getRequest = store.get(Number(quizId));
+  
+      getRequest.onsuccess = () => {
+        const progressData = getRequest.result;
+        if (progressData) {
+          console.log("Resuming quiz with saved answers:", progressData);
+          const answersString = encodeURIComponent(JSON.stringify(progressData.answers));
+          window.location.href = `../../components/QuizTest/QuizTest.html?id=${quizId}&answers=${answersString}`;
+        } else {
+          console.warn("No saved progress found, starting fresh.");
+          window.location.href = `../../components/QuizTest/QuizTest.html?id=${quizId}`;
+        }
+      };
+  
+      getRequest.onerror = () => {
+        console.error("Error retrieving quiz progress.");
+        window.location.href = `../../components/QuizTest/QuizTest.html?id=${quizId}`;
+      };
+    };
   }
+  
 
   // Debounce function to limit how often a function is called
   function debounce(func, delay) {
@@ -147,7 +168,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (e.target.classList.contains("review-link")) {
       e.preventDefault();
       const quizId = e.target.getAttribute("href").split("=")[1];
-      window.location.href = `./review.html?id=${quizId}`;
+      window.location.href = `../../components/QuizResult/QuizResult.html?id=${quizId}`;
     }
   });
 });
