@@ -2,6 +2,7 @@ import loadQuiz from "../../database/readData.js";
 import caculateScore from "../../database/caculateScore.js";
 import saveUserProgress from "../../database/updateData.js";
 import readQuiz from "../../database/readQuiz.js";
+import getUserProgress from "../../database/getUserProgess.js";
 
 const getIdFromUrl = () => {
   const urlParams = new URLSearchParams(window.location.search);
@@ -18,11 +19,8 @@ document.addEventListener("DOMContentLoaded", async function () {
   displayQuizInfo(quizId);
   const quizObject = await loadQuiz(quizId);
   const questsContainer = document.getElementById("quest-container");
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const answersParam = urlParams.get("answers");
-  const userAnswers = answersParam ? JSON.parse(decodeURIComponent(answersParam)) : {};
-  displayQuestions(quizObject, questsContainer,userAnswers);
+  const UserProgress = await getUserProgress(quizId);
+  displayQuestions(quizObject, questsContainer, UserProgress.answers);
   const submitBtn = document.getElementById("submit-quiz");
   //submit button event listener
   submitBtn.addEventListener("click", () => {
@@ -73,7 +71,7 @@ function displayQuestions(quizObject, container, userAnswers = {}) {
       answerItem.classList.add("answer-item");
 
       // Kiểm tra xem option có phải là câu trả lời đã lưu không
-      const isChecked = userAnswers[index] === option ? "checked" : ""; 
+      const isChecked = userAnswers[index] === option ? "checked" : "";
 
       answerItem.innerHTML = `
         <input type="radio" name="answer${index}" value="${option}" ${isChecked} />
