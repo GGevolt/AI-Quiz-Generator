@@ -1,6 +1,3 @@
-const DB_NAME = "QuizDatabase";
-const DB_VERSION = 1;
-
 function caculateScore(quizzObj, answersArr) {
   //Caculate score
   let score = 0;
@@ -11,7 +8,7 @@ function caculateScore(quizzObj, answersArr) {
   });
 
   // Save to db
-  let dbRequest = indexedDB.open(DB_NAME, DB_VERSION);
+  let dbRequest = indexedDB.open("QuizDatabase", 1);
 
   dbRequest.onsuccess = function (event) {
     let db = event.target.result;

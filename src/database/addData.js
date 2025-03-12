@@ -1,23 +1,16 @@
-const DB_NAME = "QuizDatabase";
-const DB_VERSION = 1;
-
 function addData(quizObject) {
   return new Promise((resolve, reject) => {
-    let dbRequest = indexedDB.open(DB_NAME, DB_VERSION);
+    let dbRequest = indexedDB.open("QuizDatabase", 1);
 
     dbRequest.onsuccess = function (event) {
       let db = event.target.result;
-      let transaction = db.transaction(
-        ["Quizz", "Questions", "UserProgress"],
-        "readwrite"
-      );
+      let transaction = db.transaction(["Quizz", "Questions"], "readwrite");
 
       let quizStore = transaction.objectStore("Quizz");
       let questionsStore = transaction.objectStore("Questions");
-      let userProgressStore = transaction.objectStore("UserProgress");
 
       let quizData = {
-        topic: quizObject.theme,
+        topic: quizObject.topic,
         createdAt: new Date().toISOString(),
         difficulty: quizObject.difficulty,
         questionsCount: quizObject.questions.length,
@@ -73,43 +66,6 @@ function addData(quizObject) {
       console.error("Failed to open database");
       reject("Failed to open database");
     };
-    // // 📝 Thêm Quiz
-    // let quiz1 = { id: 1, topic: "JavaScript",    createdAt: "2025-03-06", status: "Pending", totalScore: null };
-    // quizzStore.add(quiz1);
-
-    // // ❓ Thêm câu hỏi vào Quiz
-    // let question1 = {
-    //     id: 1,
-    //     quizzId: 1,
-    //     question: "What is `typeof null` in JS?",
-    //     options: ["object", "null", "undefined", "number"],
-    //     correct: 2,
-    //     description: "\"null\" is a primitive value, but typeof null is \"object\" due to a legacy bug in JavaScript."
-    // };
-
-    // let question2 = {
-    //     id: 2,
-    //     quizzId: 1,
-    //     question: "Which keyword declares a variable?",
-    //     options: ["var", "let", "const", "function"],
-    //     correct: 3,
-    //     description: "\"const\" declares a variable that cannot be reassigned."
-    // };
-
-    // questionsStore.add(question1);
-    // questionsStore.add(question2);
-
-    // // 👤 Thêm tiến trình của người dùng
-    // let userProgress = { quizzId: 1, answers: ["a", "b", "c", null, "d"], status: "Pending" };
-    // userProgressStore.add(userProgress);
-
-    // transaction.oncomplete = function () {
-    //     console.log("Data added successfully! 🎯");
-    // };
-
-    // transaction.onerror = function (event) {
-    //     console.error("Error adding data:", event.target.error);
-    // };
   });
 }
 

@@ -16,7 +16,7 @@ const schema = {
     properties: {
       question: {
         type: SchemaType.STRING,
-        description: "The question about the theme",
+        description: "The question about the topic",
         nullable: false,
       },
       answers: {
@@ -54,15 +54,15 @@ document.addEventListener("DOMContentLoaded", function () {
     generateQuizButton.addEventListener(
       "click",
       debounce(async function () {
-        const themeInput = document.getElementById("theme-input").value; // Add the id of the theme input
+        const topicInput = document.getElementById("topic-input").value; // Add the id of the topic input
         const languageInput = document.getElementById("language-select").value; // Add the id of the language input
         const difficultyInput =
           document.getElementById("difficulty-select").value; // Add the id of the difficulty input
         const questionNumbers =
           document.getElementById("questions-count").value; // Add the id of the question numbers input
 
-        if (!themeInput) {
-          helperText.innerText = "Theme input is not empty";
+        if (!topicInput) {
+          helperText.innerText = "Topic input is not empty";
           helperText.classList.add("show");
           return;
         } else {
@@ -77,10 +77,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         try {
           // 🔍 Kiểm tra xem quiz có tồn tại hay không
-          const existingQuiz = await checkQuiz(themeInput);
+          const existingQuiz = await checkQuiz(topicInput);
           if (existingQuiz) {
             const confirmCreate = confirm(
-              `A quiz with topic "${themeInput}"  already exists and is incomplete. Do you still want to create a new quiz?`
+              `A quiz with topic "${topicInput}"  already exists and is incomplete. Do you still want to create a new quiz?`
             );
             if (!confirmCreate) {
               return; // ⛔ Hủy nếu người dùng không muốn tạo mới
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
           return;
         }
 
-        const prompt = `Generate a quiz about ${themeInput} in ${languageInput}. The quiz should contain ${questionNumbers} ${difficultyInput} questions. Each question should have 4 possible answers, and only one of them should be correct. Indicate the correct answer and provide an explanation for the correct answer.`;
+        const prompt = `Generate a quiz about ${topicInput} in ${languageInput}. The quiz should contain ${questionNumbers} ${difficultyInput} questions. Each question should have 4 possible answers, and only one of them should be correct. Indicate the correct answer and provide an explanation for the correct answer.`;
 
         console.log("Fetching data...");
         const preview = document.getElementById("questions-preview");
@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
           .then((data) => {
             console.log("Response data:", data); // Debugging: log the response data
             const quizObject = dataProcessing(
-              themeInput,
+              topicInput,
               data,
               difficultyInput
             );
@@ -149,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-function dataProcessing(themeInput, data, difficultyInput) {
+function dataProcessing(topicInput, data, difficultyInput) {
   if (!data.candidates || !Array.isArray(data.candidates)) {
     console.error("Invalid data format:", data);
     return;
@@ -182,7 +182,7 @@ function dataProcessing(themeInput, data, difficultyInput) {
   }
 
   const quizObject = {
-    theme: themeInput,
+    topic: topicInput,
     difficulty: difficultyInput,
     questions: questions.map((q) => ({
       question: q.question,
@@ -191,9 +191,6 @@ function dataProcessing(themeInput, data, difficultyInput) {
       explanation: q.explanation,
     })),
   };
-
-  // addData(quizObject);
-  // loadQuiz(4);
 
   console.log("Quiz Object:", quizObject); // Debugging: log the quiz object
 

@@ -1,9 +1,6 @@
-const DB_NAME = "QuizDatabase";
-const DB_VERSION = 1;
-
 function queryHistory(topic, difficulty) {
   return new Promise((resolve, reject) => {
-    const dbRequest = indexedDB.open(DB_NAME, DB_VERSION);
+    let dbRequest = indexedDB.open("QuizDatabase", 1);
 
     dbRequest.onsuccess = (event) => {
       const db = event.target.result;

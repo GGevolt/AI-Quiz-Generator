@@ -1,7 +1,5 @@
-const DB_NAME = "QuizDatabase";
-const DB_VERSION = 1;
 function deleteQuizWithQuestions(quizzId) {
-  const request = indexedDB.open(DB_NAME, DB_VERSION);
+  const request = indexedDB.open("QuizDatabase", 1);
 
   request.onsuccess = function (event) {
     const db = event.target.result;
