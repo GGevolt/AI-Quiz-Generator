@@ -10,7 +10,6 @@ const getIdFromUrl = () => {
 };
 
 document.addEventListener("DOMContentLoaded", async function () {
-  console.log("DOM fully loaded and parsed");
   const quizId = getIdFromUrl();
   if (quizId === -1) {
     console.error("❌ Quiz ID not found");

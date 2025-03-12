@@ -44,13 +44,10 @@ const schema = {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("DOM fully loaded and parsed"); // Check if the DOM is fully loaded
-
   const generateQuizButton = document.getElementById("gen-btn");
   const helperText = document.getElementById("helper-text");
 
   if (generateQuizButton) {
-    console.log("Button found");
     generateQuizButton.addEventListener(
       "click",
       debounce(async function () {
@@ -94,7 +91,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const prompt = `Generate a quiz about ${topicInput} in ${languageInput}. The quiz should contain ${questionNumbers} ${difficultyInput} questions. Each question should have 4 possible answers, and only one of them should be correct. Indicate the correct answer and provide an explanation for the correct answer.`;
 
-        console.log("Fetching data...");
         const preview = document.getElementById("questions-preview");
         preview.classList.remove("open");
         const loader = document.getElementById("loader");

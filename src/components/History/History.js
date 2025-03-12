@@ -73,10 +73,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Determine action link text and URL based on status
     let actionHtml;
     if (statusValue === "Completed") {
-      // For completed quizzes, use a regular link
       actionHtml = `<a href="../../components/QuizTest/QuizTest.html?id=${quiz.id}" class="resume-link">Review Quiz</a>`;
     } else {
-      // For pending quizzes, add a data attribute and special class
       actionHtml = `<a href="../../components/QuizTest/QuizTest.html?id=${quiz.id}" class="resume-link">Resume Quiz</a>`;
     }
 

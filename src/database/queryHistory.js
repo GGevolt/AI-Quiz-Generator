@@ -27,7 +27,6 @@ function queryHistory(topic, difficulty) {
           results = results.filter((quiz) => quiz.difficulty === difficulty);
         }
 
-        console.log("✅ Filtered quizzes:", results);
         resolve(results);
       };
 

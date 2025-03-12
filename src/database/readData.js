@@ -38,7 +38,6 @@ async function getQuizData(quizId) {
 export default async function loadQuiz(quizId) {
   try {
     const data = await getQuizData(quizId);
-    console.log("✅ Quiz Data:", data);
     return data;
   } catch (error) {
     console.error("❌ Error fetching quiz data:", error);

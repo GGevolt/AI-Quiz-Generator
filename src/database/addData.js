@@ -21,8 +21,6 @@ function addData(quizObject) {
       addQuizRequest.onsuccess = function (event) {
         let quizzId = event.target.result; // ID của quiz mới
 
-        console.log("Quiz added with ID:", quizzId);
-
         // Thêm từng câu hỏi vào Questions store
         let questionPromises = quizObject.questions.map((q) => {
           return new Promise((resolve, reject) => {
