@@ -61,6 +61,15 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Change submit button text and disable it
     submitBtn.textContent = "Quiz Submitted";
     submitBtn.disabled = true;
+
+    // Scroll to top with animation after a short delay
+    setTimeout(() => {
+      // Simple scroll to top
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }, 300);
   });
 });
 
