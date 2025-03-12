@@ -59,6 +59,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     saveUserProgress(quizId, answers, "Completed");
     displayResult(quizObject);
     // Change submit button text and disable it
+    submitBtn.classList.add("done");
     submitBtn.textContent = "Quiz Submitted";
     submitBtn.disabled = true;
 

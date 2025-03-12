@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     let badgeClass = "easy";
     if (quiz.difficulty === "Medium") {
       badgeClass = "medium";
-    } else if (quiz.difficulty === "Difficult") {
+    } else if (quiz.difficulty === "Hard") {
       badgeClass = "difficulty";
     }
 
