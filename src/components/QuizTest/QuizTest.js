@@ -197,14 +197,28 @@ function displayQuestions(quizObject, container, userAnswers = {}) {
     explanationDiv.classList.add("explanation-box");
     explanationDiv.id = `explanation-${index}`;
     explanationDiv.style.display = "none"; // Hidden by default
-    explanationDiv.innerHTML = `
-      <div class="explanation-content">
-        <div class="explanation-header">
-          <i class="fas fa-info-circle"></i> Explanation
-        </div>
-        <p>${q.description || "No explanation available."}</p>
-      </div>
-    `;
+
+    const explanationContent = document.createElement("div");
+    explanationContent.classList.add("explanation-content");
+
+    const explanationHeader = document.createElement("div");
+    explanationHeader.classList.add("explanation-header");
+
+    const infoIcon = document.createElement("i");
+    infoIcon.classList.add("fas", "fa-info-circle");
+
+    const headerText = document.createTextNode(" Explanation");
+
+    explanationHeader.appendChild(infoIcon);
+    explanationHeader.appendChild(headerText);
+
+    const explanationParagraph = document.createElement("p");
+    explanationParagraph.textContent =
+      q.description || "No explanation available.";
+
+    explanationContent.appendChild(explanationHeader);
+    explanationContent.appendChild(explanationParagraph);
+    explanationDiv.appendChild(explanationContent);
 
     container.appendChild(questionBox);
     container.appendChild(answerBox);
